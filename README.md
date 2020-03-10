@@ -64,7 +64,8 @@ Optional:
 * Forced Log-in -> Account creation if no log in is available
 
 ## Wireframes
-* Include drawn version of storyboards
+![Mock1](mocks/mock1.png)
+![Mock2](mocks/mock2.png)
 
 ### [BONUS] Digital Wireframes & Mockups
 * Digital version of storyboards (demo and snapshot of each screen) 
