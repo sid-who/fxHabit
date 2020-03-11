@@ -16,8 +16,8 @@ You are what you do every day. Our application focuses on the building blocks of
 - **Category:** Social Networking / Productivity
 - **Mobile:** This app would be primarily developed for mobile
 - **Story:** 
-- **Market:** Any individual could choose to use this app, and to keep it a safe environment, people would have to add each other.
-- **Habit:** This app could be used as often or unoften as the user wanted depending on habits they want to improve on or keeping their friends accountable. 
+- **Market:** Any individual could choose to use this app, and to keep it a safe environment, people would have to add their friends
+- **Habit:** This app could be used as often or unoften as the user wanted depending on habits they want to improve or helping their friends keep their goal. 
 - **Scope:** 
 
 ## Product Spec
@@ -25,10 +25,11 @@ You are what you do every day. Our application focuses on the building blocks of
 
 **Required Must-have Stories**
 
-* User logs in to access friends list, calendar(?), tracker, journal, and settings
+* User logs in to access friends list, calendar, tracker, journal, and settings
 * User creates their daily and weekly goals in the tracker
+* User is able to see streak on calendar 
+* User is able to view previous progress in journal
 * User is able to share goals with friends 
-* Profile pages for each user
 * Settings (Accesibility, Notification, General, etc.) 
 
 **Optional Nice-to-have Stories**
@@ -41,6 +42,8 @@ You are what you do every day. Our application focuses on the building blocks of
   * Upon Download/Opening of the application, the user is prompted to log in to gain access to their profile
 * Friends Screen 
   * Able to look upon friends' tracker and send reminders 
+* Calendar Screen
+  * Able to see streak on calendar view 
 * Tracker Screen 
   * Able to create daily and weekly goals
 * Journal Screen 
@@ -54,6 +57,7 @@ You are what you do every day. Our application focuses on the building blocks of
 
 * Friends List
 * Tracker
+* Calendar
 * Journal
 * Settings 
 
@@ -64,7 +68,8 @@ Optional:
 * Forced Log-in -> Account creation if no log in is available
 
 ## Wireframes
-* Include drawn version of storyboards
+![Mock1](mocks/mock1.png)
+![Mock2](mocks/mock2.png)
 
 ### [BONUS] Digital Wireframes & Mockups
 * Digital version of storyboards (demo and snapshot of each screen) 
