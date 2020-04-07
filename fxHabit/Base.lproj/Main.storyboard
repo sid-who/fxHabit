@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="erv-Oz-pfu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="erv-Oz-pfu">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -57,22 +57,6 @@
             </objects>
             <point key="canvasLocation" x="-1574" y="-761"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="aXe-3j-JHx">
-            <objects>
-                <viewController id="Z6Z-e9-Ih8" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="GUO-bQ-pTx">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="ZW7-5H-8un"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="V2S-5d-A6n"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HU2-jd-NTi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3572.4637681159425" y="114.50892857142857"/>
-        </scene>
         <!--Daily Tasks-->
         <scene sceneID="93g-Ar-RqR">
             <objects>
@@ -113,7 +97,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="doc.plaintext" catalog="system" width="56" height="64"/>
-        <image name="pencil" catalog="system" width="64" height="56"/>
+        <image name="doc.plaintext" catalog="system" width="115" height="128"/>
+        <image name="pencil" catalog="system" width="128" height="113"/>
     </resources>
 </document>
