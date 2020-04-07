@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		33B8DF8F243D09590084C7F9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B8DF8E243D09590084C7F9 /* LoginViewController.swift */; };
 		69EF8B8EDDF767196C6D5C7B /* Pods_fxHabit_fxHabitUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F42CA5319BF4C25D4D3D990 /* Pods_fxHabit_fxHabitUITests.framework */; };
 		C7364989241704DC00C16B7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7364988241704DC00C16B7F /* AppDelegate.swift */; };
 		C736498B241704DC00C16B7F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C736498A241704DC00C16B7F /* SceneDelegate.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		073EBC542B2C2EAFDD2A25F4 /* Pods_fxHabit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fxHabit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		33B8DF8E243D09590084C7F9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6F42CA5319BF4C25D4D3D990 /* Pods_fxHabit_fxHabitUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fxHabit_fxHabitUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87FA95F82DF1D7D00A0B76D3 /* Pods-fxHabit-fxHabitUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fxHabit-fxHabitUITests.debug.xcconfig"; path = "Target Support Files/Pods-fxHabit-fxHabitUITests/Pods-fxHabit-fxHabitUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		94AA0C6D2458FD169617B338 /* Pods-fxHabit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fxHabit.release.xcconfig"; path = "Target Support Files/Pods-fxHabit/Pods-fxHabit.release.xcconfig"; sourceTree = "<group>"; };
@@ -76,7 +78,6 @@
 				87FA95F82DF1D7D00A0B76D3 /* Pods-fxHabit-fxHabitUITests.debug.xcconfig */,
 				B7438AAE916A9CC60D3E58F7 /* Pods-fxHabit-fxHabitUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -119,6 +120,7 @@
 				C7364991241704DF00C16B7F /* Assets.xcassets */,
 				C7364993241704DF00C16B7F /* LaunchScreen.storyboard */,
 				C7364996241704DF00C16B7F /* Info.plist */,
+				33B8DF8E243D09590084C7F9 /* LoginViewController.swift */,
 			);
 			path = fxHabit;
 			sourceTree = "<group>";
@@ -318,6 +320,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33B8DF8F243D09590084C7F9 /* LoginViewController.swift in Sources */,
 				C736498D241704DC00C16B7F /* ViewController.swift in Sources */,
 				C7364989241704DC00C16B7F /* AppDelegate.swift in Sources */,
 				C736498B241704DC00C16B7F /* SceneDelegate.swift in Sources */,
