@@ -15,10 +15,10 @@ You are what you do every day. Our application focuses on the building blocks of
 ### App Evaluation
 - **Category:** Social Networking / Productivity
 - **Mobile:** This app would be primarily developed for mobile
-- **Story:** 
+- **Story:** Promotes the creation of user habits through a miniaturized task-based structure. Tasks are aggregated over time to create a sense of progression for the user, and task completion is tracked daily through journals.
 - **Market:** Any individual could choose to use this app, and to keep it a safe environment, people would have to add their friends
 - **Habit:** This app could be used as often or unoften as the user wanted depending on habits they want to improve or helping their friends keep their goal. 
-- **Scope:** 
+- **Scope:** This app is a short term task list to encourage productivity without unnecessary engagement. There are no plans to add a large feature list currently. By keeping the features limited the app will stayed focused on its intended use. 
 
 ## Product Spec
 ### 1. User Stories (Required and Optional)
@@ -81,4 +81,14 @@ Optional:
 * Detailed task for each member
 
 ## Milestones
-* Tentative timeline for the next 7 weeks 
+* Have Login, Task List, and Journal and associated storyboard layouts created - 04/09/2020
+* Set up database and create logic to add to database (tasks and journal entries) - 04/13/2020
+* Display data onto storyboards (tasks and journal) - 04/15/2020
+* Testing and debugging phase: review and polish layout - 04/17/2020
+
+* Have Calendar, Friends List, and Add A Friend storyboard layouts created - 04/23/2020
+* Set up additional tables in the database and inject data from app - 04/27/2020
+* Display data onto storyboards - 04/29/2020
+* Testing and debugging phase: review and polish layout - 05/01/2020
+
+
