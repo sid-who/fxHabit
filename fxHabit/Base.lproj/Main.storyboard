@@ -57,6 +57,12 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6S-V2-ozZ">
+                                                    <rect key="frame" x="367" y="36" width="21" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <state key="normal" title="Button" image="checkmark.rectangle.fill" catalog="system"/>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -66,11 +72,33 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="AAA-Nu-GN7"/>
                     </view>
-                    <navigationItem key="navigationItem" id="o4x-4H-DWf"/>
+                    <navigationItem key="navigationItem" id="o4x-4H-DWf">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="ZCL-uf-Q3H"/>
+                        <barButtonItem key="rightBarButtonItem" title="Create Task" id="Dnn-vA-hHl">
+                            <connections>
+                                <segue destination="Tde-8H-X47" kind="presentation" id="M5t-MI-pAT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sd1-Fl-kIl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="234.78260869565219" y="-1464.5089285714284"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="DEM-6f-0g7">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="Tde-8H-X47" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YNn-Hc-7kn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="b8o-HN-7vC"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i3T-eS-6rG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1106" y="-1465"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="4Qs-Uu-Dtu">
@@ -193,6 +221,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="checkmark.rectangle.fill" catalog="system" width="64" height="46"/>
         <image name="doc.plaintext" catalog="system" width="56" height="64"/>
         <image name="pencil" catalog="system" width="64" height="56"/>
     </resources>
