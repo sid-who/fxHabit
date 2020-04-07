@@ -78,7 +78,7 @@ Optional:
 * GIF of app demo 
 
 ## Tasks
-* Detailed task for each member
+* Daily alternating paired programming sessions 
 
 ## Milestones
 * Have Login, Task List, and Journal and associated storyboard layouts created - 04/09/2020
