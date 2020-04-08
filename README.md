@@ -5,6 +5,7 @@ Submitted by: **Gurpreet Sidhu**, **Paul Whipp**, **David Duong**, and **Yazmin 
 1. [Overview](#Overview)
 1. [Product Spec](#Product-Spec)
 1. [Wireframes](#Wireframes)
+1. [Schema](#Schema)
 1. [Tasks](#Tasks)
 1. [Milestones](#Milestones)
 
@@ -72,10 +73,65 @@ Optional:
 ![Mock2](mocks/mock2.png)
 
 ### [BONUS] Digital Wireframes & Mockups
-* Digital version of storyboards (demo and snapshot of each screen) 
+<img src=‘https://imgur.com/2A453ya’ width=250>
 
-### [BONUS] Interactive Prototype
-* GIF of app demo 
+## Schema 
+### Models
+#### User
+ * Using Parse default user object 'PFUser'
+ * Only using username and password
+
+#### Task
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | objectId      | String   | unique id for the user task (default field) |
+   | creator       | Pointer to User| task creator |
+   | title         | String   | task name |
+   | taskDesc      | String   | a short description of the task |
+   | createdAt     | DateTime | date when task is created (default field) |
+   | updatedAt     | DateTime | date when task is last updated (default field) |
+   
+#### Journal
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | objectId      | String   | unique id for the user task (default field) |
+   | creator       | Pointer to User| entry creator |
+   | title         | String   | journal entry title |
+   | journalBody   | String   | main text of the journal entry |
+   | createdAt     | DateTime | date when journal is created (default field) |
+   | updatedAt     | DateTime | date when journal is last updated (default field) |
+   
+#### Calendar
+ * We have not decided on a model for the Calendar
+   
+### Networking
+#### List of network requests by screen
+   - Login Screen
+      - (Read/GET) Confirm user credentials
+      - (Create/POST) Add a new user
+   - Home Task Screen
+      - (Read/GET) Query all tasks where user is creator
+         ```swift
+         let query = PFQuery(className:"Task")
+         query.whereKey("user", equalTo: currentUser)
+         query.order(byDescending: "createdAt")
+         query.findObjectsInBackground { (tasks: [PFObject]?, error: Error?) in
+            if let error = error { 
+               print(error.localizedDescription)
+            } else if let tasks = tasks {
+               print("Successfully retrieved \(tasks.count) tasks.")
+            }
+         }
+         ```
+      - (Delete) Delete existing Task
+   - Create Task Screen
+      - (Create/POST) Create a new task object
+      - (Update/POST) Edit an old task object
+   - Journal Screen
+      - (Read/GET) Query all journal entries where user is creator
+   - Journal Entry Screen
+      - (Create/POST) Create a new journal object
+      - (Update/POST) Edit an old journal object
 
 ## Tasks
 * Daily alternating paired programming sessions 
