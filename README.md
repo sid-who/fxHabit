@@ -5,6 +5,7 @@ Submitted by: **Gurpreet Sidhu**, **Paul Whipp**, **David Duong**, and **Yazmin 
 1. [Overview](#Overview)
 1. [Product Spec](#Product-Spec)
 1. [Wireframes](#Wireframes)
+1. [Schema](#Schema)
 1. [Tasks](#Tasks)
 1. [Milestones](#Milestones)
 
