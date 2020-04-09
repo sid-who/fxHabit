@@ -201,7 +201,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6S-V2-ozZ">
-                                                    <rect key="frame" x="308" y="36" width="78" height="22"/>
+                                                    <rect key="frame" x="361" y="36" width="78" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <state key="normal" title="Button" image="checkmark.rectangle.fill" catalog="system"/>
                                                 </button>
@@ -213,8 +213,8 @@
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="80L-Zm-Mfz" secondAttribute="trailing" id="Nm7-qF-UqQ"/>
                                                 <constraint firstItem="80L-Zm-Mfz" firstAttribute="leading" secondItem="T0h-z1-bgZ" secondAttribute="leadingMargin" constant="8" id="Xrr-at-vHg"/>
                                                 <constraint firstItem="80L-Zm-Mfz" firstAttribute="top" secondItem="T0h-z1-bgZ" secondAttribute="topMargin" constant="8" id="YJG-jg-HXl"/>
-                                                <constraint firstItem="x6S-V2-ozZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="r0R-1d-PU4" secondAttribute="trailing" symbolic="YES" id="j63-O3-aAG"/>
-                                                <constraint firstAttribute="trailing" secondItem="x6S-V2-ozZ" secondAttribute="trailing" constant="28" id="rVe-Ni-4mc"/>
+                                                <constraint firstItem="x6S-V2-ozZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="r0R-1d-PU4" secondAttribute="trailing" constant="8" symbolic="YES" id="j63-O3-aAG"/>
+                                                <constraint firstAttribute="trailing" secondItem="x6S-V2-ozZ" secondAttribute="trailing" constant="-25" id="rVe-Ni-4mc"/>
                                                 <constraint firstItem="x6S-V2-ozZ" firstAttribute="centerY" secondItem="T0h-z1-bgZ" secondAttribute="centerY" id="sAd-Nu-UXN"/>
                                                 <constraint firstItem="r0R-1d-PU4" firstAttribute="leading" secondItem="T0h-z1-bgZ" secondAttribute="leading" constant="28" id="uxw-Mi-cKp"/>
                                             </constraints>
