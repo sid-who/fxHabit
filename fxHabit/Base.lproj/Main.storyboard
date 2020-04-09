@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IP2-n6-D1Z">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IP2-n6-D1Z">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -181,34 +181,43 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="94" id="Ivo-Sw-8WA" customClass="TaskTableViewCell" customModule="fxHabit" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskTableViewCell" rowHeight="94" id="Ivo-Sw-8WA" customClass="TaskTableViewCell" customModule="fxHabit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="94"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ivo-Sw-8WA" id="T0h-z1-bgZ">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="94"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Task Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80L-Zm-Mfz">
-                                                    <rect key="frame" x="20" y="11" width="87" height="24"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Task Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80L-Zm-Mfz">
+                                                    <rect key="frame" x="28" y="19" width="86.5" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A short description..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0R-1d-PU4">
-                                                    <rect key="frame" x="20" y="40" width="160" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A short description..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0R-1d-PU4">
+                                                    <rect key="frame" x="28" y="51" width="160" height="35"/>
                                                     <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6S-V2-ozZ">
-                                                    <rect key="frame" x="367" y="36" width="21" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6S-V2-ozZ">
+                                                    <rect key="frame" x="308" y="36" width="78" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <state key="normal" title="Button" image="checkmark.rectangle.fill" catalog="system"/>
                                                 </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="r0R-1d-PU4" firstAttribute="top" secondItem="80L-Zm-Mfz" secondAttribute="bottom" constant="8" id="5tT-xy-UeM"/>
+                                                <constraint firstAttribute="bottom" secondItem="r0R-1d-PU4" secondAttribute="bottom" constant="8" id="KRo-H5-mh8"/>
+                                                <constraint firstItem="r0R-1d-PU4" firstAttribute="top" secondItem="80L-Zm-Mfz" secondAttribute="bottom" constant="8" id="L1H-tG-nGS"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="80L-Zm-Mfz" secondAttribute="trailing" id="Nm7-qF-UqQ"/>
+                                                <constraint firstItem="80L-Zm-Mfz" firstAttribute="leading" secondItem="T0h-z1-bgZ" secondAttribute="leadingMargin" constant="8" id="Xrr-at-vHg"/>
+                                                <constraint firstItem="80L-Zm-Mfz" firstAttribute="top" secondItem="T0h-z1-bgZ" secondAttribute="topMargin" constant="8" id="YJG-jg-HXl"/>
+                                                <constraint firstItem="x6S-V2-ozZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="r0R-1d-PU4" secondAttribute="trailing" symbolic="YES" id="j63-O3-aAG"/>
+                                                <constraint firstAttribute="trailing" secondItem="x6S-V2-ozZ" secondAttribute="trailing" constant="28" id="rVe-Ni-4mc"/>
+                                                <constraint firstItem="x6S-V2-ozZ" firstAttribute="centerY" secondItem="T0h-z1-bgZ" secondAttribute="centerY" id="sAd-Nu-UXN"/>
+                                                <constraint firstItem="r0R-1d-PU4" firstAttribute="leading" secondItem="T0h-z1-bgZ" secondAttribute="leading" constant="28" id="uxw-Mi-cKp"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="checkmarkButton" destination="x6S-V2-ozZ" id="Fzp-Lz-deA"/>
@@ -235,6 +244,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="IlB-13-uJS" id="rkl-nO-VVi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sd1-Fl-kIl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -545,13 +557,13 @@
             <point key="canvasLocation" x="1250.7246376811595" y="-1106.25"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="checkmark.rectangle.fill" catalog="system" width="64" height="46"/>
-        <image name="doc.plaintext" catalog="system" width="56" height="64"/>
-        <image name="pencil" catalog="system" width="64" height="56"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="M5t-MI-pAT"/>
-        <segue reference="9KP-OK-Bij"/>
+        <segue reference="4Uq-lP-ZGe"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <image name="checkmark.rectangle.fill" catalog="system" width="128" height="93"/>
+        <image name="doc.plaintext" catalog="system" width="115" height="128"/>
+        <image name="pencil" catalog="system" width="128" height="113"/>
+    </resources>
 </document>
