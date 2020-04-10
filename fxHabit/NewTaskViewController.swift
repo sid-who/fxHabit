@@ -37,7 +37,6 @@ class NewTaskViewController: UIViewController {
         descriptionTextField!.layer.borderColor = UIColor.lightGray.cgColor
         
         if task.count != 0 {
-            print(task[0])
             titleTextField.text = task[0]["title"] as? String
             descriptionTextField.text = task[0]["description"] as? String
         }
@@ -51,8 +50,19 @@ class NewTaskViewController: UIViewController {
         if titleTextField.text == "" {
             errorLabel.text = "Missing title."
         } else if task.count != 0 {
+            task[0]["title"] = titleTextField.text
+            task[0]["description"] = descriptionTextField.text
+            
+            task[0].saveInBackground { (success, error) in
+                if success {
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    self.errorLabel.text = error!.localizedDescription
+                }
+            }
+            /*
             let query = PFQuery(className:"Tasks")
-            query.getObjectInBackground(withId: "xWMyZEGZ") { (gameScore: PFObject?, error: Error?) in
+            query.getObjectInBackground(withId: task[0].objectId!) { (gameScore: PFObject?, error: Error?) in
                 if let error = error {
                     print(error.localizedDescription)
                 } else if let gameScore = gameScore {
@@ -60,7 +70,7 @@ class NewTaskViewController: UIViewController {
                     gameScore["score"] = 1338
                     gameScore.saveInBackground()
                 }
-            }
+            } */
         } else {
             let task = PFObject(className: "Tasks")
             
