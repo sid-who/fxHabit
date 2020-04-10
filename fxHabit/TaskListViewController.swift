@@ -9,11 +9,12 @@
 import UIKit
 import Parse
 
-class TaskViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class TaskListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     @IBOutlet weak var tableView: UITableView!
     
     var posts = [PFObject]()
+    var individualPost = [PFObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +30,10 @@ class TaskViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         //Move all into a function gettingposts. Change Classname to posts
         let query = PFQuery(className:"Tasks")
-        query.includeKeys(["author"])
+        query.whereKey("author", equalTo:PFUser.current()!)
         query.limit = 15
         
-        query.findObjectsInBackground { (posts, error) in
+        query.findObjectsInBackground{ (posts, error) in
             if posts != nil {
                 self.posts = posts!
                 self.tableView.reloadData()
@@ -63,5 +64,20 @@ class TaskViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.descriptionLabel.text = post["description"] as? String
         
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ViewTaskSegue" {
+            if let destVC = segue.destination as? UINavigationController,
+                let targetController = destVC.topViewController as? ViewTaskViewController {
+                targetController.task = individualPost
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // when user clicks on certain task, go to view task view controller
+        individualPost = [posts[indexPath.row]]
+        performSegue(withIdentifier: "ViewTaskSegue", sender: self)
     }
 }

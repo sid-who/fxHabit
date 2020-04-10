@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IP2-n6-D1Z">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IP2-n6-D1Z">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -65,7 +65,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JAX-Ay-eta" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="235" y="-224"/>
+            <point key="canvasLocation" x="374" y="-1092"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Bbc-m3-tAo">
@@ -113,7 +113,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CdD-46-xWC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1106" y="-224"/>
+            <point key="canvasLocation" x="1245" y="-1092"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="4WW-2K-RSA">
@@ -166,12 +166,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u1K-ac-Kdd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1983" y="-224"/>
+            <point key="canvasLocation" x="2122" y="-1092"/>
         </scene>
-        <!--Task View Controller-->
+        <!--Task List View Controller-->
         <scene sceneID="0aU-KG-viK">
             <objects>
-                <viewController id="L0A-sY-O92" customClass="TaskViewController" customModule="fxHabit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="L0A-sY-O92" customClass="TaskListViewController" customModule="fxHabit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BWv-tx-kGd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -189,19 +189,19 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Task Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80L-Zm-Mfz">
-                                                    <rect key="frame" x="28" y="19" width="86.5" height="24"/>
+                                                    <rect key="frame" x="24" y="19" width="0.0" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A short description..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0R-1d-PU4">
-                                                    <rect key="frame" x="28" y="51" width="160" height="35"/>
+                                                    <rect key="frame" x="28" y="51" width="0.0" height="35"/>
                                                     <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6S-V2-ozZ">
-                                                    <rect key="frame" x="361" y="36" width="78" height="22"/>
+                                                    <rect key="frame" x="25" y="36" width="0.0" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <state key="normal" title="Button" image="checkmark.rectangle.fill" catalog="system"/>
                                                 </button>
@@ -223,7 +223,7 @@
                                             <outlet property="checkmarkButton" destination="x6S-V2-ozZ" id="Fzp-Lz-deA"/>
                                             <outlet property="descriptionLabel" destination="r0R-1d-PU4" id="hAE-D5-54N"/>
                                             <outlet property="titleLabel" destination="80L-Zm-Mfz" id="Tj6-iX-CLc"/>
-                                            <segue destination="egT-RR-KmI" kind="presentation" trigger="accessoryAction" id="pH9-36-UxL"/>
+                                            <segue destination="egT-RR-KmI" kind="presentation" identifier="ViewTaskSegue" trigger="accessoryAction" id="pH9-36-UxL"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -250,7 +250,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sd1-Fl-kIl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="234.78260869565219" y="-1464.5089285714284"/>
+            <point key="canvasLocation" x="372" y="-2281"/>
         </scene>
         <!--New Task View Controller-->
         <scene sceneID="DEM-6f-0g7">
@@ -322,18 +322,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i3T-eS-6rG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2160.8695652173915" y="-1822.0982142857142"/>
+            <point key="canvasLocation" x="2299" y="-2639"/>
         </scene>
-        <!--View Controller-->
+        <!--View Task View Controller-->
         <scene sceneID="H3X-8P-tNF">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="h3f-ZU-Jsr" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="h3f-ZU-Jsr" customClass="ViewTaskViewController" customModule="fxHabit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uJR-5z-UgO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Task Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3R-pd-Xic">
-                                <rect key="frame" x="31" y="116" width="81" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3R-pd-Xic">
+                                <rect key="frame" x="31" y="116" width="38" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                 <nil key="textColor"/>
@@ -346,38 +346,47 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NCy-6E-enB">
-                                <rect key="frame" x="31" y="208" width="352" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Nv-cb-5l1">
-                                <rect key="frame" x="31" y="145" width="34" height="21"/>
+                                <rect key="frame" x="31" y="145" width="352" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NCy-6E-enB">
+                                <rect key="frame" x="31" y="209" width="352" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="aO4-56-hbg"/>
                     </view>
                     <navigationItem key="navigationItem" id="myL-io-QHz">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="xZf-CJ-muC"/>
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="xZf-CJ-muC">
+                            <connections>
+                                <action selector="onBackButton:" destination="h3f-ZU-Jsr" id="qwO-yh-swJ"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="Vc5-ei-s82">
                             <connections>
-                                <segue destination="czK-bK-qU7" kind="presentation" id="xHm-ly-8YN"/>
+                                <action selector="onEditButton:" destination="h3f-ZU-Jsr" id="R4v-gh-BSh"/>
+                                <segue destination="czK-bK-qU7" kind="presentation" identifier="EditTaskSegue" id="xHm-ly-8YN"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="NCy-6E-enB" id="VDw-Ev-DI6"/>
+                        <outlet property="titleLabel" destination="4Nv-cb-5l1" id="1NB-lk-wHb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xbt-N4-i5X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2160.8695652173915" y="-1106.25"/>
+            <point key="canvasLocation" x="2298.5507246376815" y="-1923.2142857142856"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="4Qs-Uu-Dtu">
@@ -391,6 +400,8 @@
                     <connections>
                         <segue destination="jmH-ui-GIn" kind="relationship" relationship="viewControllers" id="Mqy-6s-WRP"/>
                         <segue destination="noa-YN-i7m" kind="relationship" relationship="viewControllers" id="4Xd-YS-qmJ"/>
+                        <segue destination="ubS-i4-gXk" kind="relationship" relationship="viewControllers" id="EUO-uy-uN4"/>
+                        <segue destination="XIN-7D-nQH" kind="relationship" relationship="viewControllers" id="amC-NK-u4N"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WTJ-fC-251" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -400,7 +411,7 @@
         <!--Daily Tasks-->
         <scene sceneID="93g-Ar-RqR">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jmH-ui-GIn" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TaskListNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="jmH-ui-GIn" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Daily Tasks" image="doc.plaintext" catalog="system" id="NwP-ls-f9C"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QLa-FN-FOH">
@@ -414,7 +425,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DVb-Iu-ezN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-675.36231884057975" y="-1464.5089285714284"/>
+            <point key="canvasLocation" x="-536" y="-2282"/>
         </scene>
         <!--Journal-->
         <scene sceneID="mYG-Oa-CMV">
@@ -433,7 +444,43 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rtx-lv-H2l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-675" y="-224"/>
+            <point key="canvasLocation" x="-536" y="-1092"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="iFR-cB-OyC">
+            <objects>
+                <viewController id="26V-Pw-nUe" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yh5-8d-5z8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="e6e-Sg-SyL"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="baB-EU-1rF">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="U57-vC-te2"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UUJ-Me-tW7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="374" y="-232"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="6S8-Qz-3aX">
+            <objects>
+                <viewController id="MIQ-KS-kqJ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oeT-3U-zLt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="fqh-f9-Wdv"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="EXE-jt-9VT">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="PCe-gm-AWt"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="neV-sx-cfj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="374" y="679"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="Vq3-Yw-g1M">
@@ -523,7 +570,7 @@
         <!--Navigation Controller-->
         <scene sceneID="a6j-UQ-dRW">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="czK-bK-qU7" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NewTaskNavigationController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="czK-bK-qU7" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0XJ-D3-pWc">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -536,12 +583,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qMz-h4-Dnb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1250.7246376811595" y="-1822.0982142857142"/>
+            <point key="canvasLocation" x="1388" y="-2639"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="EpD-aH-xoT">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="egT-RR-KmI" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ViewTaskNavigationController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="egT-RR-KmI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="APJ-sG-TRj">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -554,16 +601,56 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SHL-kP-D4l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1250.7246376811595" y="-1106.25"/>
+            <point key="canvasLocation" x="1388" y="-1923"/>
+        </scene>
+        <!--Calendar-->
+        <scene sceneID="HjG-he-8zk">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ubS-i4-gXk" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Calendar" image="calendar" catalog="system" id="zBR-L9-ofl"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NbV-1B-Tx1">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="26V-Pw-nUe" kind="relationship" relationship="rootViewController" id="aOi-1G-Tlq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o0A-83-0CA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-536" y="-232"/>
+        </scene>
+        <!--Friends List-->
+        <scene sceneID="HNk-Vr-5Zs">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XIN-7D-nQH" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Friends List" image="person" catalog="system" id="dOi-z4-z9w"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="A1V-lH-cbL">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="MIQ-KS-kqJ" kind="relationship" relationship="rootViewController" id="Ytg-7N-zAH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3de-jc-z5z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-538" y="679"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="M5t-MI-pAT"/>
-        <segue reference="4Uq-lP-ZGe"/>
-    </inferredMetricsTieBreakers>
     <resources>
-        <image name="checkmark.rectangle.fill" catalog="system" width="128" height="93"/>
-        <image name="doc.plaintext" catalog="system" width="115" height="128"/>
-        <image name="pencil" catalog="system" width="128" height="113"/>
+        <image name="calendar" catalog="system" width="64" height="52"/>
+        <image name="checkmark.rectangle.fill" catalog="system" width="64" height="46"/>
+        <image name="doc.plaintext" catalog="system" width="56" height="64"/>
+        <image name="pencil" catalog="system" width="64" height="56"/>
+        <image name="person" catalog="system" width="64" height="58"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="xHm-ly-8YN"/>
+        <segue reference="9KP-OK-Bij"/>
+    </inferredMetricsTieBreakers>
 </document>
