@@ -9,19 +9,11 @@
 import UIKit
 import Parse
 
-class JournalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    
-    var entries = [PFObject]()
-    var entry = [PFObject]()
-    
-    
+class JournalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        //tableView.delegate = self
-        //tableView.dataSource = self
     }
     
     @IBAction func onLogoutButton(_ sender: Any) {
@@ -37,16 +29,5 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
            
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-           
-           
-    }
-    
-        
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
     }
 }
