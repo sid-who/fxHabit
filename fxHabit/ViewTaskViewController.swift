@@ -30,7 +30,6 @@ class ViewTaskViewController: UIViewController {
     }
 
     @IBAction func onBackButton(_ sender: Any) {
-        // go to task list navigation controller
         dismiss(animated: true, completion: nil)
     }
     
