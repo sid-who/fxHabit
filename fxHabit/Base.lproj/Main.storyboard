@@ -10,7 +10,7 @@
         <!--Journal View Controller-->
         <scene sceneID="sFd-sz-SgS">
             <objects>
-                <viewController id="41Z-tb-Jrv" customClass="JournalViewController" customModule="fxHabit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="JournalViewController" id="41Z-tb-Jrv" customClass="JournalViewController" customModule="fxHabit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tl1-9c-5MW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -649,6 +649,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="xHm-ly-8YN"/>
-        <segue reference="9KP-OK-Bij"/>
+        <segue reference="4Uq-lP-ZGe"/>
     </inferredMetricsTieBreakers>
 </document>
