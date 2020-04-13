@@ -10,20 +10,6 @@ import UIKit
 import Parse
 import SwiftUI
 
-
-/*
-extension UIViewController{
-    func HideKeyboard() {
-        let Tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(DismissKeyboard))
-        view.addGestureRecognizer(Tap)
-    }
-    @objc func DismissKeyboard(){
-        view.endEditing(true)
-    }
-}
-*/
-
-
 class NewEntryViewController: UIViewController {
 
     @IBOutlet weak var titleTextField: UITextField!
