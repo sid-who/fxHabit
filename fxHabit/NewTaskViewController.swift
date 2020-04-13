@@ -60,17 +60,6 @@ class NewTaskViewController: UIViewController {
                     self.errorLabel.text = error!.localizedDescription
                 }
             }
-            /*
-            let query = PFQuery(className:"Tasks")
-            query.getObjectInBackground(withId: task[0].objectId!) { (gameScore: PFObject?, error: Error?) in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else if let gameScore = gameScore {
-                    gameScore["cheatMode"] = true
-                    gameScore["score"] = 1338
-                    gameScore.saveInBackground()
-                }
-            } */
         } else {
             let task = PFObject(className: "Tasks")
             
