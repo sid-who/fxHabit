@@ -26,12 +26,12 @@ You are what you do every day. Our application focuses on the building blocks of
 
 **Required Must-have Stories**
 
-* User logs in to access friends list, calendar, tracker, journal, and settings
-* User creates their daily and weekly goals in the tracker
-* User is able to see streak on calendar 
-* User is able to view previous progress in journal
-* User is able to share goals with friends 
-* Settings (Accesibility, Notification, General, etc.) 
+* User logs in to access friends list, calendar, tracker, journal, and settings []
+* User creates their daily and weekly goals in the tracker [x]
+* User is able to see streak on calendar []
+* User is able to view previous progress in journal []
+* User is able to share goals with friends []
+* Settings (Accesibility, Notification, General, etc.) []
 
 **Optional Nice-to-have Stories**
 
@@ -39,18 +39,18 @@ You are what you do every day. Our application focuses on the building blocks of
 
 ### 2. Screen Archetypes
 
-* Login or Register - User signs up or signs into account
-  * Upon Download/Opening of the application, the user is prompted to log in to gain access to their profile
-* Friends Screen 
-  * Able to look upon friends' tracker and send reminders 
-* Calendar Screen
-  * Able to see streak on calendar view 
-* Tracker Screen 
+* Login or Register - User signs up or signs into account [x]
+  * Upon Download/Opening of the application, the user is prompted to log in to gain access to their profile [x]
+* Friends Screen []
+  * Able to look upon friends' tracker and send reminders []
+* Calendar Screen []
+  * Able to see streak on calendar view []
+* Tracker Screen [x]
   * Able to create daily and weekly goals
-* Journal Screen 
-  * Able to view previous dayly (or weekly?) summary of goals met
-* Settings Screen 
-  * Able to change notifications
+* Journal Screen [x]
+  * Able to view previous dayly (or weekly?) summary of goals met []
+* Settings Screen []
+  * Able to change notifications []
 
 ### 3. Navigation
 
