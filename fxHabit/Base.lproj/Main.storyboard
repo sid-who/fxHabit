@@ -20,7 +20,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="e7n-dp-1me">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="e7n-dp-1me" customClass="JournalTableViewCell" customModule="fxHabit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e7n-dp-1me" id="TLJ-lC-99L">
@@ -43,6 +43,10 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="c9n-S1-Pqn" id="Kqa-Fa-5Ab"/>
+                                            <outlet property="titleLabel" destination="epx-qi-htf" id="mjl-Ih-wNL"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -62,15 +66,18 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="Sn8-LI-Udb" id="xdQ-my-6Xt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JAX-Ay-eta" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="374" y="-1092"/>
         </scene>
-        <!--View Controller-->
+        <!--New Entry View Controller-->
         <scene sceneID="Bbc-m3-tAo">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="UvM-e3-4XC" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="UvM-e3-4XC" customClass="NewEntryViewController" customModule="fxHabit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4V7-j3-Zao">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -79,11 +86,17 @@
                                 <rect key="frame" x="20" y="775" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="onCancelButton:" destination="UvM-e3-4XC" eventType="touchUpInside" id="peZ-Po-skE"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mUK-xC-wfD">
                                 <rect key="frame" x="345" y="775" width="49" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="onSubmitButton:" destination="UvM-e3-4XC" eventType="touchUpInside" id="qaH-pq-Z2O"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Entry Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BF4-jq-ilq">
                                 <rect key="frame" x="20" y="77" width="78" height="21"/>
@@ -93,7 +106,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Journal entry text..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="v9k-h6-55d">
-                                <rect key="frame" x="20" y="156" width="368" height="611"/>
+                                <rect key="frame" x="18" y="156" width="368" height="299"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -106,14 +119,26 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tzb-c0-7z7">
+                                <rect key="frame" x="28" y="476" width="353" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="uHg-Lr-3Lc"/>
                     </view>
+                    <connections>
+                        <outlet property="bodyTextView" destination="v9k-h6-55d" id="wwG-eX-f7d"/>
+                        <outlet property="errorLabel" destination="tzb-c0-7z7" id="v5t-cs-HHJ"/>
+                        <outlet property="titleTextField" destination="b1t-fq-K1h" id="CdZ-I1-OVH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CdD-46-xWC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1245" y="-1092"/>
+            <point key="canvasLocation" x="1244.9275362318842" y="-1092.1875"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="4WW-2K-RSA">
@@ -649,6 +674,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="xHm-ly-8YN"/>
-        <segue reference="4Uq-lP-ZGe"/>
+        <segue reference="9KP-OK-Bij"/>
     </inferredMetricsTieBreakers>
 </document>
