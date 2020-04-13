@@ -145,4 +145,4 @@ Optional:
 * Testing and debugging phase: review and polish layout - 05/01/2020
 
 ### [BONUS] Interactive Prototype
-![fxHabit Demo 1](fxhabit_demo1.gif)
+![fxHabit Demo 1](mocks/fxhabit_demo1.gif)
