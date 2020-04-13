@@ -72,9 +72,6 @@ Optional:
 ![Mock1](mocks/mock1.png)
 ![Mock2](mocks/mock2.png)
 
-### [BONUS] Digital Wireframes & Mockups
-<img src=‘https://imgur.com/2A453ya’ width=250>
-
 ## Schema 
 ### Models
 #### User
@@ -147,4 +144,5 @@ Optional:
 * Display data onto storyboards - 04/29/2020
 * Testing and debugging phase: review and polish layout - 05/01/2020
 
-
+### [BONUS] Interactive Prototype
+![fxHabit Demo 1](fxhabit_demo1.gif)
