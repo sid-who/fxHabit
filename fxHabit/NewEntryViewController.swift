@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import SwiftUI
 
-class NewEntryViewController: UIViewController {
+class NewEntryViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var bodyTextView: UITextView!
@@ -24,6 +24,8 @@ class NewEntryViewController: UIViewController {
         // Do any additional setup after loading the view.
         errorLabel.text = ""
         
+        // textView setup
+        bodyTextView.delegate = self
         bodyTextView!.layer.borderWidth = 1
         bodyTextView!.layer.borderColor = UIColor.lightGray.cgColor
         bodyTextView!.text = "What's on your mind?"
@@ -47,20 +49,14 @@ class NewEntryViewController: UIViewController {
         return dateFormatterPrint.string(from: date)
     }
     
-//    func textViewDidBeginEditing(_ textView: UITextView) {
-//
-////        if bodyTextView.textColor == UIColor.lightGray {
-////
-////            bodyTextView.text = ""
-////            bodyTextView.textColor = UIColor.black
-////        }
-//
-//        bodyTextView.text = ""
-//
-//    }
-//
-    
-    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+
+        if textView.textColor == UIColor.lightGray {
+
+            textView.text = ""
+            textView.textColor = UIColor.black
+        }
+    }
     
     
     @IBAction func onSubmitButton(_ sender: Any) {
