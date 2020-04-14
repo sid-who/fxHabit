@@ -9,11 +9,36 @@
 import UIKit
 import Parse
 
-class JournalViewController: UIViewController {
+class JournalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    var entries = [PFObject]()
+    var entry : PFObject? // do we even need this here?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let query = PFQuery(className:"Entries")
+        query.whereKey("author", equalTo:PFUser.current()!)
+        query.limit = 15
+        
+        query.findObjectsInBackground{ (entries, error) in
+            if entries != nil {
+                self.entries = entries!
+                self.tableView.reloadData()
+            } else {
+                print("Error, can't load entries")
+            }
+        }
     }
     
     @IBAction func onLogoutButton(_ sender: Any) {
@@ -26,8 +51,16 @@ class JournalViewController: UIViewController {
         delegate.window!.rootViewController = loginViewController
     }
     
-           
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return entries.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "JournalTableViewCell") as! JournalTableViewCell
+        let entry = entries[indexPath.row]
+        cell.titleLabel.text = entry["title"] as? String
+        cell.dateLabel.text = entry["date"] as? String
+        
+        return cell
     }
 }

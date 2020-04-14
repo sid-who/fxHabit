@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		339E908B244504F3003AFBCF /* JournalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339E908A244504F3003AFBCF /* JournalTableViewCell.swift */; };
+		339E908D24450806003AFBCF /* NewEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339E908C24450806003AFBCF /* NewEntryViewController.swift */; };
+		339E908F244520F7003AFBCF /* ViewEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339E908E244520F7003AFBCF /* ViewEntryViewController.swift */; };
 		450D7B2D243FE87C00F398A9 /* ViewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450D7B2C243FE87C00F398A9 /* ViewTaskViewController.swift */; };
 		45BAFE97243E9F4F000EB7F1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BAFE96243E9F4F000EB7F1 /* LoginViewController.swift */; };
 		45BAFE99243EAD0D000EB7F1 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BAFE98243EAD0D000EB7F1 /* TaskListViewController.swift */; };
@@ -35,6 +38,9 @@
 
 /* Begin PBXFileReference section */
 		073EBC542B2C2EAFDD2A25F4 /* Pods_fxHabit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fxHabit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		339E908A244504F3003AFBCF /* JournalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalTableViewCell.swift; sourceTree = "<group>"; };
+		339E908C24450806003AFBCF /* NewEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryViewController.swift; sourceTree = "<group>"; };
+		339E908E244520F7003AFBCF /* ViewEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEntryViewController.swift; sourceTree = "<group>"; };
 		450D7B2C243FE87C00F398A9 /* ViewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTaskViewController.swift; sourceTree = "<group>"; };
 		45BAFE96243E9F4F000EB7F1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		45BAFE98243EAD0D000EB7F1 /* TaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +139,9 @@
 				45BAFE9E243EBC86000EB7F1 /* TaskTableViewCell.swift */,
 				45BAFE98243EAD0D000EB7F1 /* TaskListViewController.swift */,
 				450D7B2C243FE87C00F398A9 /* ViewTaskViewController.swift */,
+				339E908A244504F3003AFBCF /* JournalTableViewCell.swift */,
+				339E908C24450806003AFBCF /* NewEntryViewController.swift */,
+				339E908E244520F7003AFBCF /* ViewEntryViewController.swift */,
 			);
 			path = fxHabit;
 			sourceTree = "<group>";
@@ -332,13 +341,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				339E908D24450806003AFBCF /* NewEntryViewController.swift in Sources */,
 				45BAFE9F243EBC86000EB7F1 /* TaskTableViewCell.swift in Sources */,
 				45BAFE97243E9F4F000EB7F1 /* LoginViewController.swift in Sources */,
 				45BAFE99243EAD0D000EB7F1 /* TaskListViewController.swift in Sources */,
 				C7364989241704DC00C16B7F /* AppDelegate.swift in Sources */,
 				450D7B2D243FE87C00F398A9 /* ViewTaskViewController.swift in Sources */,
 				C736498B241704DC00C16B7F /* SceneDelegate.swift in Sources */,
+				339E908F244520F7003AFBCF /* ViewEntryViewController.swift in Sources */,
 				45BAFE9D243EB0BC000EB7F1 /* NewTaskViewController.swift in Sources */,
+				339E908B244504F3003AFBCF /* JournalTableViewCell.swift in Sources */,
 				45BAFE9B243EAD19000EB7F1 /* JournalViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
