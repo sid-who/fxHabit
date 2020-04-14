@@ -14,7 +14,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     
     var entries = [PFObject]()
-    var entry = [PFObject()]
+    var entry : PFObject? // do we even need this here?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,9 +57,9 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "JournalTableViewCell") as! JournalTableViewCell
-        let entryx = entries[indexPath.row]
-        cell.titleLabel.text = entryx["title"] as? String
-        cell.dateLabel.text = entryx["date"] as? String
+        let entry = entries[indexPath.row]
+        cell.titleLabel.text = entry["title"] as? String
+        cell.dateLabel.text = entry["date"] as? String
         
         return cell
     }

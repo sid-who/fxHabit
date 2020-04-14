@@ -17,21 +17,21 @@ class ViewEntryViewController: UIViewController {
     @IBOutlet weak var bodyTextView: UITextView!
     
     
-    var entry = [PFObject]()
+    var entry : PFObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        titleLabel.text = entry[0]["title"]! as? String
-        bodyTextView.text = entry[0]["description"]! as? String
+        titleLabel.text = entry!["title"]! as? String
+        bodyTextView.text = entry!["description"]! as? String
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidLoad()
 
-        titleLabel.text = entry[0]["title"]! as? String
-        bodyTextView.text = entry[0]["description"]! as? String
+        titleLabel.text = entry!["title"]! as? String
+        bodyTextView.text = entry!["description"]! as? String
     }
     
 //    override func viewDidAppear() {

@@ -15,7 +15,7 @@ class NewEntryViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var bodyTextView: UITextView!
     @IBOutlet weak var errorLabel: UILabel!
-    var entry = [PFObject]()
+    var entry : PFObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,10 +26,10 @@ class NewEntryViewController: UIViewController {
         bodyTextView!.layer.borderWidth = 1
         bodyTextView!.layer.borderColor = UIColor.lightGray.cgColor
         
-        if entry.count != 0 {
+        if entry != nil {
             
-            titleTextField.text = entry[0]["title"] as? String
-            titleTextField.text = entry[0]["body"] as? String
+            titleTextField.text = entry!["title"] as? String
+            titleTextField.text = entry!["body"] as? String
         }
     }
     
@@ -39,13 +39,13 @@ class NewEntryViewController: UIViewController {
             
             errorLabel.text = "Missing title."
             
-        } else if entry.count != 0 {
-            entry[0]["title"] = titleTextField.text
-            entry[0]["body"] = bodyTextView.text
+        } else if entry != nil {
+            entry!["title"] = titleTextField.text
+            entry!["body"] = bodyTextView.text
             
             // why no date and author here? I don't understand -pw
             
-            entry[0].saveInBackground { (success, error) in
+            entry!.saveInBackground { (success, error) in
                 if success {
                     self.dismiss(animated: true, completion: nil)
                 } else {
