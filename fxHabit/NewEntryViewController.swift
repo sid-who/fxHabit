@@ -23,8 +23,11 @@ class NewEntryViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         errorLabel.text = ""
+        
         bodyTextView!.layer.borderWidth = 1
         bodyTextView!.layer.borderColor = UIColor.lightGray.cgColor
+        bodyTextView!.text = "What's on your mind?"
+        bodyTextView!.textColor = UIColor.lightGray
         
         if entry != nil {
             
@@ -32,6 +35,33 @@ class NewEntryViewController: UIViewController {
             titleTextField.text = entry!["body"] as? String
         }
     }
+    
+    func dateToString(date:Date) -> String {
+        
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
+
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "MM/dd/YY"
+        
+        return dateFormatterPrint.string(from: date)
+    }
+    
+//    func textViewDidBeginEditing(_ textView: UITextView) {
+//
+////        if bodyTextView.textColor == UIColor.lightGray {
+////
+////            bodyTextView.text = ""
+////            bodyTextView.textColor = UIColor.black
+////        }
+//
+//        bodyTextView.text = ""
+//
+//    }
+//
+    
+    
+    
     
     @IBAction func onSubmitButton(_ sender: Any) {
         
@@ -58,7 +88,7 @@ class NewEntryViewController: UIViewController {
             entry["author"] = PFUser.current()!
             entry["title"] = titleTextField.text
             entry["body"] = bodyTextView.text
-            entry["date"] = Date.init().description
+            entry["date"] = dateToString(date: Date.init())
             
             entry.saveInBackground { (success, error) in
                 if success {
@@ -72,14 +102,12 @@ class NewEntryViewController: UIViewController {
     
     
     @IBAction func onCancelButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     
-    
-    
-    
-    
 
+    
     /*
     // MARK: - Navigation
 
