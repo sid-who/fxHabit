@@ -14,21 +14,18 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     
     var posts = [PFObject]()
-    var individualPost = [PFObject]()
+    var individualPost : PFObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-        // Do any additional setup after loading the view.
     }
         
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        //Move all into a function gettingposts. Change Classname to posts
         let query = PFQuery(className:"Tasks")
         query.whereKey("author", equalTo:PFUser.current()!)
         query.limit = 15
@@ -77,7 +74,7 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // when user clicks on certain task, go to view task view controller
-        individualPost = [posts[indexPath.row]]
+        individualPost = posts[indexPath.row]
         performSegue(withIdentifier: "ViewTaskSegue", sender: self)
     }
 }

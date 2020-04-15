@@ -15,6 +15,7 @@ class NewEntryViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var bodyTextView: UITextView!
     @IBOutlet weak var errorLabel: UILabel!
+    
     var entry : PFObject?
     
     override func viewDidLoad() {
@@ -28,18 +29,17 @@ class NewEntryViewController: UIViewController, UITextViewDelegate {
         bodyTextView.delegate = self
         bodyTextView!.layer.borderWidth = 1
         bodyTextView!.layer.borderColor = UIColor.lightGray.cgColor
-        bodyTextView!.text = "What's on your mind?"
-        bodyTextView!.textColor = UIColor.lightGray
         
         if entry != nil {
-            
-            titleTextField.text = entry!["title"] as? String
-            titleTextField.text = entry!["body"] as? String
+            titleTextField.text = entry?["title"]! as? String
+            bodyTextView.text = entry?["body"]! as? String
+        } else {
+            bodyTextView!.text = "What's on your mind?"
+            bodyTextView!.textColor = UIColor.lightGray
         }
     }
     
     func dateToString(date:Date) -> String {
-        
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
 
@@ -50,32 +50,34 @@ class NewEntryViewController: UIViewController, UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-
         if textView.textColor == UIColor.lightGray {
-
             textView.text = ""
             textView.textColor = UIColor.black
         }
     }
     
+    @IBAction func onTitleTextField(_ sender: Any) {
+        errorLabel.text = ""
+    }
+    
+    
+    @IBAction func onCancelButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func onSubmitButton(_ sender: Any) {
-        
         if titleTextField.text == "" {
-            
             errorLabel.text = "Missing title."
-            
         } else if entry != nil {
-            entry!["title"] = titleTextField.text
-            entry!["body"] = bodyTextView.text
+            entry?["title"] = titleTextField.text
+            entry?["body"] = bodyTextView.text
+            entry?["date"] = dateToString(date: Date.init())
             
-            // why no date and author here? I don't understand -pw
-            
-            entry!.saveInBackground { (success, error) in
+            entry?.saveInBackground { (success, error) in
                 if success {
                     self.dismiss(animated: true, completion: nil)
                 } else {
-                    self.errorLabel.text = "Save failed." // error!.localizedDescription
+                    self.errorLabel.text =  error!.localizedDescription
                 }
             }
         } else {
@@ -95,23 +97,4 @@ class NewEntryViewController: UIViewController, UITextViewDelegate {
             }
         }
     }
-    
-    
-    @IBAction func onCancelButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    
-
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

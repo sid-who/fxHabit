@@ -25,7 +25,8 @@ class NewTaskViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextView!
     @IBOutlet weak var errorLabel: UILabel!
-    var task = [PFObject]() 
+    
+    var task : PFObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +37,9 @@ class NewTaskViewController: UIViewController {
         descriptionTextField!.layer.borderWidth = 1
         descriptionTextField!.layer.borderColor = UIColor.lightGray.cgColor
         
-        if task.count != 0 {
-            titleTextField.text = task[0]["title"] as? String
-            descriptionTextField.text = task[0]["description"] as? String
+        if task != nil {
+            titleTextField.text = task?["title"]! as? String
+            descriptionTextField.text = task?["description"]! as? String
         }
     }
     
@@ -49,11 +50,11 @@ class NewTaskViewController: UIViewController {
     @IBAction func onSubmitButton(_ sender: Any) {
         if titleTextField.text == "" {
             errorLabel.text = "Missing title."
-        } else if task.count != 0 {
-            task[0]["title"] = titleTextField.text
-            task[0]["description"] = descriptionTextField.text
+        } else if task != nil {
+            task?["title"] = titleTextField.text
+            task?["description"] = descriptionTextField.text
             
-            task[0].saveInBackground { (success, error) in
+            task?.saveInBackground { (success, error) in
                 if success {
                     self.dismiss(animated: true, completion: nil)
                 } else {
