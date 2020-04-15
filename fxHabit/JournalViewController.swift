@@ -14,7 +14,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     
     var entries = [PFObject]()
-    var entry : PFObject? // do we even need this here?
+    var entry : PFObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,4 +63,22 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // when user clicks on certain task, go to view task view controller
+        entry = entries[indexPath.row]
+        performSegue(withIdentifier: "ViewEntrySegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ViewEntrySegue" {
+            if let destVC = segue.destination as? UINavigationController,
+                let targetController = destVC.topViewController as? ViewEntryViewController {
+                targetController.entry = entry
+                // there's your problem bub!
+            }
+        }
+    }
+    
+
 }

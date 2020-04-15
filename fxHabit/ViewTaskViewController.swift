@@ -14,7 +14,7 @@ class ViewTaskViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    var task = [PFObject]()
+    var task = [PFObject]() // refactor, per Jesus
     
     override func viewDidLoad() {
         super.viewDidLoad()
