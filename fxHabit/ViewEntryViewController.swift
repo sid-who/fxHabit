@@ -23,8 +23,10 @@ class ViewEntryViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        titleLabel.text = entry!["title"]! as? String
-        bodyTextView.text = entry!["description"]! as? String
+        print(entry)
+        
+        //titleLabel.text = entry!["title"]! as? String
+        //bodyTextView.text = entry!["body"]! as? String
     }
     
     override func viewDidAppear(_ animated: Bool) {
