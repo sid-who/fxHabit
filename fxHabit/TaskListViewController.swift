@@ -60,7 +60,38 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         cell.titleLabel.text = post["title"] as? String
         cell.descriptionLabel.text = post["description"] as? String
         
+        let checked = post["checked"] as? Bool
+        if checked == false {
+            cell.checkmarkButton.setImage(UIImage(systemName: "rectangle"), for: .normal)
+            cell.checkmarkButton.addTarget(self, action: #selector(fireworks), for: .touchUpInside)
+            cell.checkmarkButton.accessibilityIdentifier = post.objectId
+        } else {
+            cell.checkmarkButton.setImage(UIImage(systemName: "checkmark.rectangle.fill"), for: .normal)
+            cell.checkmarkButton.accessibilityIdentifier = post.objectId
+            cell.checkmarkButton.addTarget(self, action: #selector(fireworks), for: .touchUpInside)
+        }
+        
         return cell
+    }
+    
+    @objc func fireworks(sender:UIButton) {
+        let query = PFQuery(className:"Tasks")
+        query.getObjectInBackground(withId: (sender.accessibilityIdentifier)!) { (post, error) in
+            if error == nil {
+                let checked = post!["checked"] as? Bool
+                
+                if checked! == false {
+                    post!["checked"] = true
+                } else if checked! == true {
+                    post!["checked"] = false
+                }
+                
+                post?.saveInBackground()
+                self.viewDidAppear(true)
+            } else {
+                print(error!.localizedDescription)
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
