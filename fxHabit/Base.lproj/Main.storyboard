@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IP2-n6-D1Z">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IP2-n6-D1Z">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,7 +28,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Entry Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epx-qi-htf">
-                                                    <rect key="frame" x="22" y="24" width="96.5" height="24"/>
+                                                    <rect key="frame" x="26" y="24" width="261" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="261" id="pdP-bE-gAv"/>
                                                     </constraints>
@@ -37,7 +37,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9n-S1-Pqn">
-                                                    <rect key="frame" x="-22" y="24" width="0.0" height="21"/>
+                                                    <rect key="frame" x="298.5" y="24" width="89.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -237,21 +237,21 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Task Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80L-Zm-Mfz">
-                                                    <rect key="frame" x="24" y="19" width="0.0" height="24"/>
+                                                    <rect key="frame" x="28" y="19" width="86.5" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A short description..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0R-1d-PU4">
-                                                    <rect key="frame" x="28" y="51" width="0.0" height="35"/>
+                                                    <rect key="frame" x="28" y="51" width="160" height="35"/>
                                                     <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6S-V2-ozZ">
-                                                    <rect key="frame" x="25" y="36" width="0.0" height="22"/>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6S-V2-ozZ">
+                                                    <rect key="frame" x="347" y="36" width="47" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <state key="normal" title="Button" image="rectangle" catalog="system"/>
+                                                    <state key="normal" image="rectangle" catalog="system"/>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -262,7 +262,7 @@
                                                 <constraint firstItem="80L-Zm-Mfz" firstAttribute="leading" secondItem="T0h-z1-bgZ" secondAttribute="leadingMargin" constant="8" id="Xrr-at-vHg"/>
                                                 <constraint firstItem="80L-Zm-Mfz" firstAttribute="top" secondItem="T0h-z1-bgZ" secondAttribute="topMargin" constant="8" id="YJG-jg-HXl"/>
                                                 <constraint firstItem="x6S-V2-ozZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="r0R-1d-PU4" secondAttribute="trailing" constant="8" symbolic="YES" id="j63-O3-aAG"/>
-                                                <constraint firstAttribute="trailing" secondItem="x6S-V2-ozZ" secondAttribute="trailing" constant="-25" id="rVe-Ni-4mc"/>
+                                                <constraint firstAttribute="trailing" secondItem="x6S-V2-ozZ" secondAttribute="trailing" constant="20" id="rVe-Ni-4mc"/>
                                                 <constraint firstItem="x6S-V2-ozZ" firstAttribute="centerY" secondItem="T0h-z1-bgZ" secondAttribute="centerY" id="sAd-Nu-UXN"/>
                                                 <constraint firstItem="r0R-1d-PU4" firstAttribute="leading" secondItem="T0h-z1-bgZ" secondAttribute="leading" constant="28" id="uxw-Mi-cKp"/>
                                             </constraints>
@@ -298,7 +298,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sd1-Fl-kIl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="370" y="-2257"/>
+            <point key="canvasLocation" x="369.56521739130437" y="-2257.3660714285711"/>
         </scene>
         <!--New Task View Controller-->
         <scene sceneID="DEM-6f-0g7">
@@ -724,15 +724,15 @@
             <point key="canvasLocation" x="1387" y="-1195"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="calendar" catalog="system" width="64" height="52"/>
-        <image name="doc.plaintext" catalog="system" width="56" height="64"/>
-        <image name="pencil" catalog="system" width="64" height="56"/>
-        <image name="person" catalog="system" width="64" height="58"/>
-        <image name="rectangle" catalog="system" width="64" height="46"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6P9-j3-H35"/>
         <segue reference="M5t-MI-pAT"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="doc.plaintext" catalog="system" width="115" height="128"/>
+        <image name="pencil" catalog="system" width="128" height="113"/>
+        <image name="person" catalog="system" width="128" height="117"/>
+        <image name="rectangle" catalog="system" width="128" height="93"/>
+    </resources>
 </document>
