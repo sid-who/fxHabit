@@ -11,44 +11,30 @@ import Parse
 
 class ViewEntryViewController: UIViewController {
     
-    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var bodyTextView: UITextView!
-    
     
     var entry : PFObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        print(entry)
         
-        //titleLabel.text = entry!["title"]! as? String
-        //bodyTextView.text = entry!["body"]! as? String
+        titleLabel.text = entry?["title"]! as? String
+        bodyTextView.text = entry?["body"]! as? String
+        dateLabel.text = entry?["date"]! as? String
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidLoad()
-
-        titleLabel.text = entry!["title"]! as? String
-        bodyTextView.text = entry!["description"]! as? String
+        titleLabel.text = entry?["title"]! as? String
+        bodyTextView.text = entry?["body"]! as? String
+        dateLabel.text = entry?["date"]! as? String
     }
     
-//    override func viewDidAppear() {
-//
-//    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func onBackButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
-    */
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EditEntrySegue" {
@@ -59,15 +45,7 @@ class ViewEntryViewController: UIViewController {
         }
     }
     
-    
     @IBAction func onEditButton(_ sender: Any) {
         performSegue(withIdentifier: "EditEntrySegue", sender: self)
     }
-    
-    
-    @IBAction func onBackButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    
 }

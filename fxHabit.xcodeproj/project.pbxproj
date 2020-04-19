@@ -130,18 +130,18 @@
 				C7364988241704DC00C16B7F /* AppDelegate.swift */,
 				C7364991241704DF00C16B7F /* Assets.xcassets */,
 				C7364996241704DF00C16B7F /* Info.plist */,
+				339E908A244504F3003AFBCF /* JournalTableViewCell.swift */,
 				45BAFE9A243EAD19000EB7F1 /* JournalViewController.swift */,
 				C7364993241704DF00C16B7F /* LaunchScreen.storyboard */,
 				45BAFE96243E9F4F000EB7F1 /* LoginViewController.swift */,
 				C736498E241704DC00C16B7F /* Main.storyboard */,
+				339E908C24450806003AFBCF /* NewEntryViewController.swift */,
 				45BAFE9C243EB0BC000EB7F1 /* NewTaskViewController.swift */,
 				C736498A241704DC00C16B7F /* SceneDelegate.swift */,
-				45BAFE9E243EBC86000EB7F1 /* TaskTableViewCell.swift */,
 				45BAFE98243EAD0D000EB7F1 /* TaskListViewController.swift */,
-				450D7B2C243FE87C00F398A9 /* ViewTaskViewController.swift */,
-				339E908A244504F3003AFBCF /* JournalTableViewCell.swift */,
-				339E908C24450806003AFBCF /* NewEntryViewController.swift */,
+				45BAFE9E243EBC86000EB7F1 /* TaskTableViewCell.swift */,
 				339E908E244520F7003AFBCF /* ViewEntryViewController.swift */,
+				450D7B2C243FE87C00F398A9 /* ViewTaskViewController.swift */,
 			);
 			path = fxHabit;
 			sourceTree = "<group>";
@@ -513,6 +513,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 34Z8HRUM4W;
 				INFOPLIST_FILE = fxHabit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -531,6 +532,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 34Z8HRUM4W;
 				INFOPLIST_FILE = fxHabit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
