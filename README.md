@@ -29,7 +29,7 @@ You are what you do every day. Our application focuses on the building blocks of
 - [ ] User logs in to access friends list, calendar, tracker, journal, and settings
 - [x] User creates their daily and weekly goals in the tracker
 - [ ] User is able to see streak on calendar
-- [ ] User is able to view previous progress in journal
+- [x] User is able to view previous progress in journal
 - [ ] User is able to share goals with friends
 - [ ] Settings (Accesibility, Notification, General, etc.)
 
@@ -135,9 +135,9 @@ Optional:
 
 ## Milestones
 * Have Login, Task List, and Journal and associated storyboard layouts created - 04/09/2020 - complete
-* Set up database and create logic to add to database (tasks and journal entries) - 04/13/2020
-* Display data onto storyboards (tasks and journal) - 04/15/2020
-* Testing and debugging phase: review and polish layout - 04/17/2020
+* Set up database and create logic to add to database (tasks and journal entries) - 04/13/2020 - complete
+* Display data onto storyboards (tasks and journal) - 04/15/2020 - complete
+* Testing and debugging phase: review and polish layout - 04/17/2020 - complete
 * Get notification Certificates setup - 04/19/2020 
 * Have Calendar, Friends List, and Add A Friend storyboard layouts created - 04/23/2020
 * Set up additional tables in the database and inject data from app - 04/27/2020
@@ -146,3 +146,5 @@ Optional:
 
 ### [BONUS] Interactive Prototype
 ![fxHabit Demo 1](mocks/fxhabit_demo1.gif)
+
+![fxHabit Demo 2](mocks/fxhabit_demo2.gif)
