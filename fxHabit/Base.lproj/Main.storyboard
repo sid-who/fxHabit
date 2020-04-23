@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IP2-n6-D1Z">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IP2-n6-D1Z">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,7 +28,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Entry Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epx-qi-htf">
-                                                    <rect key="frame" x="26" y="24" width="261" height="24"/>
+                                                    <rect key="frame" x="22" y="24" width="96.5" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="261" id="pdP-bE-gAv"/>
                                                     </constraints>
@@ -37,7 +37,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9n-S1-Pqn">
-                                                    <rect key="frame" x="298.5" y="24" width="89.5" height="21"/>
+                                                    <rect key="frame" x="-22" y="24" width="0.0" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -73,7 +73,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="New Entry" id="h89-zy-L7g">
                             <connections>
-                                <segue destination="y34-Is-S5G" kind="presentation" id="4Uq-lP-ZGe"/>
+                                <segue destination="y34-Is-S5G" kind="presentation" identifier="" id="4Uq-lP-ZGe"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -237,13 +237,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Task Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80L-Zm-Mfz">
-                                                    <rect key="frame" x="28" y="19" width="86.5" height="24"/>
+                                                    <rect key="frame" x="24" y="19" width="0.0" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A short description..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0R-1d-PU4">
-                                                    <rect key="frame" x="28" y="51" width="160" height="35"/>
+                                                    <rect key="frame" x="28" y="51" width="0.0" height="35"/>
                                                     <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -638,13 +638,20 @@
                         <viewLayoutGuide key="safeArea" id="fqh-f9-Wdv"/>
                     </view>
                     <navigationItem key="navigationItem" id="EXE-jt-9VT">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="PCe-gm-AWt"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="PCe-gm-AWt">
+                            <connections>
+                                <action selector="onLogoutButton:" destination="MIQ-KS-kqJ" id="xKA-K4-E0v"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add A Friend" id="p9W-AL-t0h">
                             <connections>
-                                <segue destination="7FV-Nh-KQM" kind="presentation" id="ItI-Jm-WA9"/>
+                                <segue destination="7FV-Nh-KQM" kind="presentation" identifier="AddFriendSegue" id="ItI-Jm-WA9"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="20W-jo-3m5" id="ywS-dm-0qm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="neV-sx-cfj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -902,15 +909,15 @@
             <point key="canvasLocation" x="1308.6956521739132" y="1193.9732142857142"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="calendar" catalog="system" width="64" height="52"/>
+        <image name="doc.plaintext" catalog="system" width="56" height="64"/>
+        <image name="pencil" catalog="system" width="64" height="56"/>
+        <image name="person" catalog="system" width="64" height="58"/>
+        <image name="rectangle" catalog="system" width="64" height="46"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6P9-j3-H35"/>
+        <segue reference="4Uq-lP-ZGe"/>
         <segue reference="M5t-MI-pAT"/>
     </inferredMetricsTieBreakers>
-    <resources>
-        <image name="calendar" catalog="system" width="128" height="106"/>
-        <image name="doc.plaintext" catalog="system" width="115" height="128"/>
-        <image name="pencil" catalog="system" width="128" height="113"/>
-        <image name="person" catalog="system" width="128" height="117"/>
-        <image name="rectangle" catalog="system" width="128" height="93"/>
-    </resources>
 </document>

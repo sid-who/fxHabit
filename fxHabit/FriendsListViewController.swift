@@ -7,16 +7,31 @@
 //
 
 import UIKit
+import Parse
 
 class FriendsListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
-
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
 
+    @IBAction func onLogoutButton(_ sender: Any) {
+        PFUser.logOut()
+        
+        let main = UIStoryboard(name: "Main", bundle: nil)
+        let loginViewController = main.instantiateViewController(withIdentifier: "LoginViewController")
+        
+        let delegate = self.view.window?.windowScene?.delegate as! SceneDelegate
+        delegate.window!.rootViewController = loginViewController
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -37,4 +52,15 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
         
         return cell
     }
+    
+    /*
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ViewTaskSegue" {
+            if let destVC = segue.destination as? UINavigationController,
+                let targetController = destVC.topViewController as? ViewTaskViewController {
+                targetController.task = individualPost
+            }
+        }
+    }
+    */
 }
