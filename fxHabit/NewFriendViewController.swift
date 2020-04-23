@@ -10,6 +10,24 @@ import UIKit
 
 class NewFriendViewController: UIViewController {
 
+    
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var errorLabel: UILabel!
+    
+    
+    @IBAction func onAddButton(_ sender: Any) {
+        
+    }
+    
+    
+    @IBAction func onBackButton(_ sender: Any) {
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -1,23 +1,27 @@
 //
-//  FriendTableViewCell.swift
+//  PendingFriendTableViewCell.swift
 //  fxHabit
 //
-//  Created by user163799 on 4/21/20.
+//  Created by user163799 on 4/23/20.
 //  Copyright © 2020 gsidhu.ycarrillo.dduong.pwhipp. All rights reserved.
 //
 
 import UIKit
 
-class FriendTableViewCell: UITableViewCell {
+class PendingFriendTableViewCell: UITableViewCell {
     
-    
-    @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var streakLabel: UILabel!
     
-    @IBAction func onEncourageButton(_ sender: Any) {
+    
+    @IBAction func onAcceptButton(_ sender: Any) {
         
     }
+    
+    
+    @IBAction func onRejectButton(_ sender: Any) {
+    
+    }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -13,6 +13,7 @@
 		339E908B244504F3003AFBCF /* JournalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339E908A244504F3003AFBCF /* JournalTableViewCell.swift */; };
 		339E908D24450806003AFBCF /* NewEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339E908C24450806003AFBCF /* NewEntryViewController.swift */; };
 		339E908F244520F7003AFBCF /* ViewEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339E908E244520F7003AFBCF /* ViewEntryViewController.swift */; };
+		33C4513824525AFF0020C2A4 /* PendingFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C4513724525AFF0020C2A4 /* PendingFriendTableViewCell.swift */; };
 		450D7B2D243FE87C00F398A9 /* ViewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450D7B2C243FE87C00F398A9 /* ViewTaskViewController.swift */; };
 		45BAFE97243E9F4F000EB7F1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BAFE96243E9F4F000EB7F1 /* LoginViewController.swift */; };
 		45BAFE99243EAD0D000EB7F1 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BAFE98243EAD0D000EB7F1 /* TaskListViewController.swift */; };
@@ -49,6 +50,7 @@
 		339E908A244504F3003AFBCF /* JournalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalTableViewCell.swift; sourceTree = "<group>"; };
 		339E908C24450806003AFBCF /* NewEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryViewController.swift; sourceTree = "<group>"; };
 		339E908E244520F7003AFBCF /* ViewEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEntryViewController.swift; sourceTree = "<group>"; };
+		33C4513724525AFF0020C2A4 /* PendingFriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingFriendTableViewCell.swift; sourceTree = "<group>"; };
 		3F662CA91EFBDD00D5AD2CF0 /* Pods_fxHabit_fxHabitUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fxHabit_fxHabitUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		450D7B2C243FE87C00F398A9 /* ViewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTaskViewController.swift; sourceTree = "<group>"; };
 		45BAFE96243E9F4F000EB7F1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				3338376A244F7D3300FAA5F7 /* FriendTableViewCell.swift */,
 				3338376C244F7E8E00FAA5F7 /* NewFriendViewController.swift */,
 				C7C2D71A2450C0DA0068C87E /* CalendarViewController.swift */,
+				33C4513724525AFF0020C2A4 /* PendingFriendTableViewCell.swift */,
 			);
 			path = fxHabit;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				45BAFE97243E9F4F000EB7F1 /* LoginViewController.swift in Sources */,
 				45BAFE99243EAD0D000EB7F1 /* TaskListViewController.swift in Sources */,
 				33383767244F774800FAA5F7 /* FriendsListViewController.swift in Sources */,
+				33C4513824525AFF0020C2A4 /* PendingFriendTableViewCell.swift in Sources */,
 				3338376D244F7E8E00FAA5F7 /* NewFriendViewController.swift in Sources */,
 				C7364989241704DC00C16B7F /* AppDelegate.swift in Sources */,
 				450D7B2D243FE87C00F398A9 /* ViewTaskViewController.swift in Sources */,
