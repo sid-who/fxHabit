@@ -41,14 +41,14 @@ You are what you do every day. Our application focuses on the building blocks of
 
 - [x] Login or Register - User signs up or signs into account
 - [x] Upon Download/Opening of the application, the user is prompted to log in to gain access to their profile
-- [ ] Friends Screen
+- [x] Friends Screen
 - [ ] Able to look upon friends' tracker and send reminders
-- [ ] Calendar Screen
+- [x] Calendar Screen
 - [ ] Able to see streak on calendar view
 - [x] Tracker Screen
 - [x] Able to create daily and weekly goals
 - [x] Journal Screen
-- [ ] Able to view previous dayly (or weekly?) summary of goals met
+- [ ] Able to view previous daily (or weekly?) summary of goals met
 - [ ] Settings Screen
 - [ ] Able to change notifications
 
@@ -138,8 +138,8 @@ Optional:
 * Set up database and create logic to add to database (tasks and journal entries) - 04/13/2020 - complete
 * Display data onto storyboards (tasks and journal) - 04/15/2020 - complete
 * Testing and debugging phase: review and polish layout - 04/17/2020 - complete
-* Get notification Certificates setup - 04/19/2020 
-* Have Calendar, Friends List, and Add A Friend storyboard layouts created - 04/23/2020
+~~* Get notification Certificates setup - 04/19/2020~~ (deemed outside of scope)
+* Have Calendar, Friends List, and Add A Friend storyboard layouts created - 04/23/2020 - complete
 * Set up additional tables in the database and inject data from app - 04/27/2020
 * Display data onto storyboards - 04/29/2020
 * Testing and debugging phase: review and polish layout - 05/01/2020
