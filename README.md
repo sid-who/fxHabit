@@ -147,3 +147,5 @@ Optional:
 ![fxHabit Demo 1](mocks/fxhabit_demo1.gif)
 
 ![fxHabit Demo 2](mocks/fxhabit_demo2.gif)
+
+![fxHabit Demo 3](http://g.recordit.co/NB0RlOLJW7.gif)
