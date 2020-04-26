@@ -50,7 +50,6 @@ You are what you do every day. Our application focuses on the building blocks of
 - [x] Journal Screen
 - [ ] Able to view previous daily (or weekly?) summary of goals met
 - [ ] Settings Screen
-~~-Able to change notifications~~
 
 ### 3. Navigation
 
