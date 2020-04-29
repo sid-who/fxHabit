@@ -84,7 +84,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
         //print(strCount)
         if let testArray : AnyObject? = UserDefaults.standard.object(forKey: "streaksArray") as AnyObject?{
             let readArray : [String] = testArray! as! [String]
-            print(readArray)
+            //print(readArray)
             streakDays = readArray
         }
         
@@ -93,7 +93,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
         let dateString: String = myDateForm.string(from: date)
         let date2 = Date()
         let dateString2: String = myDateForm.string(from: date2)
-        print(dateString2)
+        //print(dateString2)
         
         if self.streakDays.contains(dateString) && dateString != dateString2{
 //            return UIColor.green

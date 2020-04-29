@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import ParseLiveQuery
 
 class TaskListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
@@ -133,6 +134,12 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         //query.limit = 1
         query.whereKey("username", equalTo:currentUser?.username)
         
+        let subscription: Subscription<PFObject> = Client.shared.subscribe(query)
+        
+        subscription.handleEvent{ query, event in
+            
+        }
+        
         print(PFUser.current()!.objectId as Any)
 
 
@@ -156,6 +163,7 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
 //            }
           }
         }
+        
     }
     
     func streakCalculation(strcount : Int){

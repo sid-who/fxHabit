@@ -8,6 +8,7 @@ target 'fxHabit' do
   # Pods for fxHabit
   pod "Parse"
   pod "FSCalendar"
+  pod "ParseLiveQuery"
 
   target 'fxHabitUITests' do
     # Pods for testing
