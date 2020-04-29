@@ -16,6 +16,17 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     var posts = [PFObject]()
     var individualPost : PFObject?
     
+    var streaks = [PFObject]()
+    var thisUser : PFObject?
+    var strCount = 0
+    var streakDays : Array = [String]()
+    fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
+    fileprivate lazy var myDateForm: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,6 +49,7 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
                 print("Error, can't load posts")
             }
         }
+        backgroundWork()
     }
     
     @IBAction func onLogoutButton(_ sender: Any) {
@@ -107,5 +119,66 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         // when user clicks on certain task, go to view task view controller
         individualPost = posts[indexPath.row]
         performSegue(withIdentifier: "ViewTaskSegue", sender: self)
+    }
+    
+    func backgroundWork() {
+        // Do any additional setup after loading the view.
+        let query = PFQuery(className:"_User")
+        let currentUser = PFUser.current()
+        print(PFUser.current()?["streakValue"])
+        //let somefuckingnumber = PFUser.current()?["streakValue"]
+        //streakCalculation(strcount: somefuckingnumber as! Int)
+        
+        //query.whereKey("objectId", equalTo:PFUser.current()!.objectId as Any)
+        //query.limit = 1
+        query.whereKey("username", equalTo:currentUser?.username)
+        
+        print(PFUser.current()!.objectId as Any)
+
+
+        query.getFirstObjectInBackground {
+          (object: PFObject?, error: Error?) -> Void in
+          if error != nil || object == nil {
+            
+          } else {
+            // The find succeeded.
+            self.thisUser = object
+            
+            //print(self.thisUser?["streakValue"] as Any)
+            self.strCount = (self.thisUser?["streakValue"])! as! Int
+            //self.streakCount.text = String(self.strCount)
+            self.streakCalculation(strcount: self.strCount)
+            //self.secondAction()
+//            if(self.strCount >= 7){
+//                self.streakCount.textColor = UIColor.init(red: 0.1, green: 0.6, blue: 0.4, alpha: 1)
+//            } else {
+//                self.streakCount.textColor = UIColor.init(red: 0.9, green: 0, blue: 0.1, alpha: 1)
+//            }
+          }
+        }
+    }
+    
+    func streakCalculation(strcount : Int){
+        let strcount = strcount
+        let negativeDays = strcount * -1
+        
+        let today = Date()
+        let someDaysEarlier = Calendar.current.date(byAdding: .day, value: negativeDays, to: today)!
+        
+        
+        streakDays.append(myDateForm.string(from: someDaysEarlier))
+        
+        for i in (1...strcount){
+            let nextDay = Calendar.current.date(byAdding: .day, value: i, to: someDaysEarlier)!
+            let nextDayString = myDateForm.string(from: nextDay)
+            //print(nextDayString)
+            streakDays.append(nextDayString)
+        }
+        
+        let streaksArray = streakDays
+        let defaults = UserDefaults.standard
+        defaults.set(streaksArray, forKey: "streaksArray")
+        let streakCountNumber = strCount
+        defaults.set(streakCountNumber, forKey: "yourStreak")
     }
 }
