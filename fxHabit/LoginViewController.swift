@@ -54,10 +54,7 @@ class LoginViewController: UIViewController {
         let imageData = image?.pngData()
         let file = PFFileObject(name: "profile.png", data: imageData!)
         user["profilePic"] = file
-        
-        // var or let? do these even need to be here?
-        var streakValue = 0;
-        var friendsList: [String] = [];
+        user["streakValue"] = 0
         
         user.signUpInBackground { (success, error) in
             if success {

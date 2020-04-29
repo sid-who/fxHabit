@@ -13,7 +13,6 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet weak var tableView: UITableView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,7 +20,23 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.dataSource = self
     }
     
-
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let query = PFQuery(className:"_User")
+        query.whereKey("author", equalTo:PFUser.current()!)
+        query.limit = 15
+        
+        query.findObjectsInBackground{ (posts, error) in
+            if posts != nil {
+                //self.posts = posts!
+                //self.tableView.reloadData()
+            } else {
+                print("Error, can't load posts")
+            }
+        }
+    }
+    
     @IBAction func onLogoutButton(_ sender: Any) {
         PFUser.logOut()
         
@@ -32,17 +47,6 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
         delegate.window!.rootViewController = loginViewController
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
     }
@@ -52,15 +56,4 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
         
         return cell
     }
-    
-    /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ViewTaskSegue" {
-            if let destVC = segue.destination as? UINavigationController,
-                let targetController = destVC.topViewController as? ViewTaskViewController {
-                targetController.task = individualPost
-            }
-        }
-    }
-    */
 }
