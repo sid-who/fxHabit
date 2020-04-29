@@ -21,7 +21,7 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     var strCount = 0
     var streakDays : Array = [String]()
     fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
-    fileprivate lazy var myDateForm: DateFormatter = {
+    /*LOOKIE HERE*/fileprivate lazy var myDateForm: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter
@@ -32,6 +32,7 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         
         tableView.delegate = self
         tableView.dataSource = self
+        backgroundWork()
     }
         
     override func viewDidAppear(_ animated: Bool) {
@@ -49,7 +50,7 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
                 print("Error, can't load posts")
             }
         }
-        backgroundWork()
+        //backgroundWork()
     }
     
     @IBAction func onLogoutButton(_ sender: Any) {
@@ -168,6 +169,8 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         
         
         streakDays.append(myDateForm.string(from: someDaysEarlier))
+        
+        /*LOOKIE HERE**///myDateForm.string(from: someDaysEarlier)
         
         if strcount != 0 {
             for i in (1...strcount){
