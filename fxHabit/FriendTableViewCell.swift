@@ -9,7 +9,16 @@
 import UIKit
 
 class FriendTableViewCell: UITableViewCell {
-
+    
+    
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var streakLabel: UILabel!
+    
+    @IBAction func onEncourageButton(_ sender: Any) {
+        
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
