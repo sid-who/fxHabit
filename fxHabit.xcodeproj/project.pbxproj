@@ -139,6 +139,9 @@
 			children = (
 				C7364988241704DC00C16B7F /* AppDelegate.swift */,
 				C7364991241704DF00C16B7F /* Assets.xcassets */,
+				C7C2D71A2450C0DA0068C87E /* CalendarViewController.swift */,
+				33383766244F774800FAA5F7 /* FriendsListViewController.swift */,
+				3338376A244F7D3300FAA5F7 /* FriendTableViewCell.swift */,
 				C7364996241704DF00C16B7F /* Info.plist */,
 				339E908A244504F3003AFBCF /* JournalTableViewCell.swift */,
 				45BAFE9A243EAD19000EB7F1 /* JournalViewController.swift */,
@@ -146,17 +149,14 @@
 				45BAFE96243E9F4F000EB7F1 /* LoginViewController.swift */,
 				C736498E241704DC00C16B7F /* Main.storyboard */,
 				339E908C24450806003AFBCF /* NewEntryViewController.swift */,
+				3338376C244F7E8E00FAA5F7 /* NewFriendViewController.swift */,
 				45BAFE9C243EB0BC000EB7F1 /* NewTaskViewController.swift */,
+				33C4513724525AFF0020C2A4 /* PendingFriendTableViewCell.swift */,
 				C736498A241704DC00C16B7F /* SceneDelegate.swift */,
 				45BAFE98243EAD0D000EB7F1 /* TaskListViewController.swift */,
 				45BAFE9E243EBC86000EB7F1 /* TaskTableViewCell.swift */,
 				339E908E244520F7003AFBCF /* ViewEntryViewController.swift */,
 				450D7B2C243FE87C00F398A9 /* ViewTaskViewController.swift */,
-				33383766244F774800FAA5F7 /* FriendsListViewController.swift */,
-				3338376A244F7D3300FAA5F7 /* FriendTableViewCell.swift */,
-				3338376C244F7E8E00FAA5F7 /* NewFriendViewController.swift */,
-				C7C2D71A2450C0DA0068C87E /* CalendarViewController.swift */,
-				33C4513724525AFF0020C2A4 /* PendingFriendTableViewCell.swift */,
 			);
 			path = fxHabit;
 			sourceTree = "<group>";

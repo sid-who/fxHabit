@@ -73,14 +73,14 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         cell.descriptionLabel.text = post["description"] as? String
         
         let checked = post["checked"] as? Bool
-        if checked == false {
+        if checked == false{
             cell.checkmarkButton.setImage(UIImage(systemName: "rectangle"), for: .normal)
-            cell.checkmarkButton.addTarget(self, action: #selector(fireworks), for: .touchUpInside)
             cell.checkmarkButton.accessibilityIdentifier = post.objectId
+            cell.checkmarkButton.addTarget(self, action: #selector(fireworks), for: .touchDown)
         } else {
             cell.checkmarkButton.setImage(UIImage(systemName: "checkmark.rectangle.fill"), for: .normal)
             cell.checkmarkButton.accessibilityIdentifier = post.objectId
-            cell.checkmarkButton.addTarget(self, action: #selector(fireworks), for: .touchUpInside)
+            cell.checkmarkButton.addTarget(self, action: #selector(fireworks), for: .touchDown)
         }
         
         return cell
@@ -94,10 +94,11 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
                 
                 if checked! == false {
                     post!["checked"] = true
+                    sender.setImage(UIImage(systemName: "checkmark.rectangle.fill"), for: .normal)
                 } else if checked! == true {
                     post!["checked"] = false
+                    sender.setImage(UIImage(systemName: "rectangle"), for: .normal)
                 }
-                
                 post?.saveInBackground()
                 self.viewDidAppear(true)
             } else {
@@ -168,11 +169,13 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         
         streakDays.append(myDateForm.string(from: someDaysEarlier))
         
-        for i in (1...strcount){
-            let nextDay = Calendar.current.date(byAdding: .day, value: i, to: someDaysEarlier)!
-            let nextDayString = myDateForm.string(from: nextDay)
-            //print(nextDayString)
-            streakDays.append(nextDayString)
+        if strcount != 0 {
+            for i in (1...strcount){
+                let nextDay = Calendar.current.date(byAdding: .day, value: i, to: someDaysEarlier)!
+                let nextDayString = myDateForm.string(from: nextDay)
+                //print(nextDayString)
+                streakDays.append(nextDayString)
+            }
         }
         
         let streaksArray = streakDays
