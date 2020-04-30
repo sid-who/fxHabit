@@ -23,16 +23,13 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let query = PFQuery(className:"_User")
-        query.whereKey("author", equalTo:PFUser.current()!)
-        query.limit = 15
-        
-        query.findObjectsInBackground{ (posts, error) in
-            if posts != nil {
-                //self.posts = posts!
-                //self.tableView.reloadData()
+        let query = PFQuery(className:"PendingFriends")
+        query.whereKey("user", equalTo:PFUser.current()!)
+        query.getFirstObjectInBackground { (list, error) in
+            if list != nil {
+                print(list!)
             } else {
-                print("Error, can't load posts")
+                print("Error loading pending friends")
             }
         }
     }

@@ -58,10 +58,25 @@ class LoginViewController: UIViewController {
         
         user.signUpInBackground { (success, error) in
             if success {
+                self.createEmptyLists()
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
             } else {
                 self.errorTextBox.text = error!.localizedDescription
             }
         }
+    }
+    
+    func createEmptyLists() {
+        let friendsList = PFObject(className: "FriendsList")
+        friendsList["user"] = PFUser.current()!
+        friendsList["friends"] = [String]()
+        friendsList.saveInBackground()
+        
+        let pendingFriends = PFObject(className: "PendingFriends")
+        pendingFriends["user"] = PFUser.current()!
+        pendingFriends["friends"] = [String]()
+        pendingFriends.saveInBackground()
+        
+        return
     }
 }

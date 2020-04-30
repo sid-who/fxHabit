@@ -12,16 +12,13 @@ class PendingFriendTableViewCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     
-    
     @IBAction func onAcceptButton(_ sender: Any) {
         
     }
     
-    
     @IBAction func onRejectButton(_ sender: Any) {
     
     }
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()

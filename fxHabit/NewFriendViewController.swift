@@ -7,42 +7,63 @@
 //
 
 import UIKit
+import Parse
 
 class NewFriendViewController: UIViewController {
 
-    
-    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
     
-    
-    @IBAction func onAddButton(_ sender: Any) {
-        
-    }
-    
-    
-    @IBAction func onBackButton(_ sender: Any) {
-        
-        dismiss(animated: true, completion: nil)
-    }
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        errorLabel.text = ""
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func onAddButton(_ sender: Any) {
+        if usernameTextField.text == "" {
+            errorLabel.text = "Missing username"
+        } else {
+            let query = PFQuery(className:"_User")
+            query.whereKey("username", equalTo: usernameTextField.text!)
+            query.getFirstObjectInBackground{ (userFound, error) in
+                if userFound == nil {
+                    self.errorLabel.text = "User with that name does not exist"
+                } else {
+                    // add new friend to user's pending list
+                    let friendquery = PFQuery(className:"PendingFriends")
+                    friendquery.whereKey("user", equalTo:PFUser.current()!)
+                    friendquery.getFirstObjectInBackground { (list, error) in
+                        if list != nil {
+                            var friendslist = list!["friends"] as? [String]
+                            friendslist?.append(userFound!.objectId!)
+                            list!["friends"] = friendslist
+                            list?.saveInBackground()
+                        } else {
+                            print("Error getting friends list")
+                        }
+                    }
+                    
+                    // add user's name to pending list for other user
+                    let pendingquery = PFQuery(className: "PendingFriends")
+                    pendingquery.whereKey("user", equalTo: userFound!)
+                    pendingquery.getFirstObjectInBackground { (list, error) in
+                        if list != nil {
+                            var pendinglist = list!["friends"] as? [String]
+                            pendinglist?.append((PFUser.current()?.objectId!)!)
+                            list!["friends"] = pendinglist
+                            list?.saveInBackground()
+                        } else {
+                            print("Error getting pending list")
+                        }
+                    }
+                }
+            }
+            self.dismiss(animated: true, completion: nil)
+        }
     }
-    */
-
+    
+    @IBAction func onBackButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }
