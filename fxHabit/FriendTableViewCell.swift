@@ -14,10 +14,8 @@ class FriendTableViewCell: UITableViewCell {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var streakLabel: UILabel!
-    
-    @IBAction func onEncourageButton(_ sender: Any) {
-        
-    }
+    @IBOutlet weak var finishedLabel: UILabel!
+    @IBOutlet weak var encourageButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

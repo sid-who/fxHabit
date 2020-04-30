@@ -10,15 +10,10 @@ import UIKit
 
 class PendingFriendTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var friendRequestLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
-    
-    @IBAction func onAcceptButton(_ sender: Any) {
-        
-    }
-    
-    @IBAction func onRejectButton(_ sender: Any) {
-    
-    }
+    @IBOutlet weak var acceptButton: UIButton!
+    @IBOutlet weak var rejectButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

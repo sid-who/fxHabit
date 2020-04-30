@@ -576,17 +576,11 @@
                                                     <state key="normal" title="Accept">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="onAcceptButton:" destination="fQB-z5-bX9" eventType="touchUpInside" id="Of7-yv-EVD"/>
-                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bgm-6V-qo3">
                                                     <rect key="frame" x="326" y="40" width="57" height="33"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <state key="normal" title="Reject"/>
-                                                    <connections>
-                                                        <action selector="onRejectButton:" destination="fQB-z5-bX9" eventType="touchUpInside" id="n8P-ZU-rcv"/>
-                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friend Request from...." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEr-0O-Ihb">
                                                     <rect key="frame" x="20" y="28" width="188.5" height="21"/>
@@ -617,7 +611,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="acceptButton" destination="Yjk-Bh-JWt" id="oDz-uE-i6d"/>
+                                            <outlet property="friendRequestLabel" destination="PEr-0O-Ihb" id="hR2-Rd-sLA"/>
                                             <outlet property="nameLabel" destination="Nfl-tg-p0G" id="Wiz-VN-w9w"/>
+                                            <outlet property="rejectButton" destination="bgm-6V-qo3" id="CJs-mC-E4W"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendTableViewCell" rowHeight="114" id="b2m-fZ-p9h" customClass="FriendTableViewCell" customModule="fxHabit" customModuleProvider="target">
@@ -627,42 +624,74 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="114"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CurrentFriendName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghe-Wo-RwJ">
-                                                    <rect key="frame" x="121" y="11" width="152" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="StreakCount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cci-ze-cnE">
-                                                    <rect key="frame" x="298" y="11" width="96" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vhQ-Cj-oi8">
-                                                    <rect key="frame" x="13" y="7" width="100" height="100"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_tab" translatesAutoresizingMaskIntoConstraints="NO" id="vhQ-Cj-oi8">
+                                                    <rect key="frame" x="20" y="7" width="100" height="90"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="90" id="AM1-76-cV1"/>
+                                                        <constraint firstAttribute="width" constant="100" id="OX9-oa-da0"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xGD-3u-cfp">
-                                                    <rect key="frame" x="309" y="59" width="74" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Encourage"/>
-                                                    <connections>
-                                                        <action selector="onEncourageButton:" destination="b2m-fZ-p9h" eventType="touchUpInside" id="Lfk-7V-96j"/>
-                                                    </connections>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xGD-3u-cfp">
+                                                    <rect key="frame" x="298" y="61" width="94" height="33"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="94" id="RUW-Xh-mmv"/>
+                                                        <constraint firstAttribute="height" constant="33" id="aHG-8c-KKr"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <state key="normal" title="Encourage">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Click here to see tasks maybe" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yo2-4l-3AN">
-                                                    <rect key="frame" x="121" y="63" width="152" height="40"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FriendName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghe-Wo-RwJ">
+                                                    <rect key="frame" x="128" y="11" width="143" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="NSO-OO-oEV"/>
+                                                        <constraint firstAttribute="width" constant="143" id="muT-ve-jxN"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finished for the day?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="61a-wQ-cNd">
+                                                    <rect key="frame" x="128" y="58" width="143" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yes/No" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1xY-42-4JB">
+                                                    <rect key="frame" x="128" y="79" width="53" height="18"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="StreakCount" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cci-ze-cnE">
+                                                    <rect key="frame" x="297.5" y="11" width="96" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="vhQ-Cj-oi8" secondAttribute="bottom" constant="17" id="5JQ-tk-Mnl"/>
+                                                <constraint firstItem="61a-wQ-cNd" firstAttribute="leading" secondItem="vhQ-Cj-oi8" secondAttribute="trailing" constant="8" id="94e-nQ-vsq"/>
+                                                <constraint firstItem="ghe-Wo-RwJ" firstAttribute="leading" secondItem="vhQ-Cj-oi8" secondAttribute="trailing" constant="8" id="EbN-se-2GT"/>
+                                                <constraint firstItem="Cci-ze-cnE" firstAttribute="top" secondItem="tLS-Uz-pUl" secondAttribute="topMargin" id="Fzk-ue-78R"/>
+                                                <constraint firstItem="vhQ-Cj-oi8" firstAttribute="top" secondItem="tLS-Uz-pUl" secondAttribute="top" constant="7" id="JFV-Vg-6kr"/>
+                                                <constraint firstItem="vhQ-Cj-oi8" firstAttribute="leading" secondItem="tLS-Uz-pUl" secondAttribute="leading" constant="20" id="Knx-nK-6rH"/>
+                                                <constraint firstItem="Cci-ze-cnE" firstAttribute="leading" secondItem="ghe-Wo-RwJ" secondAttribute="trailing" constant="26.5" id="NNZ-5K-0KS"/>
+                                                <constraint firstItem="1xY-42-4JB" firstAttribute="top" secondItem="61a-wQ-cNd" secondAttribute="bottom" constant="3" id="QaL-Vb-hBL"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="xGD-3u-cfp" secondAttribute="bottom" constant="9" id="UPE-Pu-WhO"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="1xY-42-4JB" secondAttribute="bottom" constant="6" id="UUo-tz-a6x"/>
+                                                <constraint firstItem="61a-wQ-cNd" firstAttribute="top" secondItem="ghe-Wo-RwJ" secondAttribute="bottom" constant="26" id="kds-SH-WfW"/>
+                                                <constraint firstItem="1xY-42-4JB" firstAttribute="leading" secondItem="vhQ-Cj-oi8" secondAttribute="trailing" constant="8" id="ri4-ll-1sO"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="xGD-3u-cfp" secondAttribute="trailing" constant="14" id="stR-LV-KYR"/>
+                                                <constraint firstItem="ghe-Wo-RwJ" firstAttribute="top" secondItem="tLS-Uz-pUl" secondAttribute="topMargin" id="vIW-Cj-ggW"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="encourageButton" destination="xGD-3u-cfp" id="sDE-Vh-mh0"/>
+                                            <outlet property="finishedLabel" destination="1xY-42-4JB" id="hwt-AF-iB3"/>
                                             <outlet property="nameLabel" destination="ghe-Wo-RwJ" id="81s-3j-yil"/>
                                             <outlet property="profileImageView" destination="vhQ-Cj-oi8" id="gnh-rb-EX0"/>
                                             <outlet property="streakLabel" destination="Cci-ze-cnE" id="llB-sH-EEM"/>
@@ -969,6 +998,7 @@
         <image name="doc.plaintext" catalog="system" width="56" height="64"/>
         <image name="pencil" catalog="system" width="64" height="56"/>
         <image name="person" catalog="system" width="64" height="58"/>
+        <image name="profile_tab" width="25" height="25"/>
         <image name="rectangle" catalog="system" width="64" height="46"/>
     </resources>
     <inferredMetricsTieBreakers>
