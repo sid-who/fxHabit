@@ -35,12 +35,12 @@ class NewFriendViewController: UIViewController {
                     friendquery.whereKey("user", equalTo:PFUser.current()!)
                     friendquery.getFirstObjectInBackground { (list, error) in
                         if list != nil {
-                            var friendslist = list!["friends"] as? [String]
+                            var friendslist = list!["sentRequest"] as? [String]
                             friendslist?.append(userFound!.objectId!)
-                            list!["friends"] = friendslist
+                            list!["sentRequest"] = friendslist
                             list?.saveInBackground()
                         } else {
-                            print("Error getting friends list")
+                            print("Current user does not have a pending list")
                         }
                     }
                     
@@ -49,17 +49,17 @@ class NewFriendViewController: UIViewController {
                     pendingquery.whereKey("user", equalTo: userFound!)
                     pendingquery.getFirstObjectInBackground { (list, error) in
                         if list != nil {
-                            var pendinglist = list!["friends"] as? [String]
+                            var pendinglist = list!["pendingRequest"] as? [String]
                             pendinglist?.append((PFUser.current()?.objectId!)!)
-                            list!["friends"] = pendinglist
+                            list!["pendingRequest"] = pendinglist
                             list?.saveInBackground()
                         } else {
-                            print("Error getting pending list")
+                            print("Found user does not have a pending list")
                         }
                     }
+                    self.dismiss(animated: true, completion: nil)
                 }
             }
-            self.dismiss(animated: true, completion: nil)
         }
     }
     

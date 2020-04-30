@@ -74,7 +74,8 @@ class LoginViewController: UIViewController {
         
         let pendingFriends = PFObject(className: "PendingFriends")
         pendingFriends["user"] = PFUser.current()!
-        pendingFriends["friends"] = [String]()
+        pendingFriends["sentRequest"] = [String]()
+        pendingFriends["pendingRequest"] = [String]()
         pendingFriends.saveInBackground()
         
         return

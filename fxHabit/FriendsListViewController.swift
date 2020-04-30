@@ -12,6 +12,7 @@ import Parse
 class FriendsListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     
     @IBOutlet weak var tableView: UITableView!
+    var pendings = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +28,8 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
         query.whereKey("user", equalTo:PFUser.current()!)
         query.getFirstObjectInBackground { (list, error) in
             if list != nil {
-                print(list!)
+                self.pendings = list!["pendingRequest"]! as! [String]
+                self.tableView.reloadData()
             } else {
                 print("Error loading pending friends")
             }
@@ -45,11 +47,22 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return pendings.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTableViewCell") as! FriendTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PendingFriendTableViewCell") as! PendingFriendTableViewCell
+        
+        let pending = pendings[indexPath.row]
+        
+        let query = PFQuery(className: "_User")
+        query.getObjectInBackground(withId: pending) { (pendingUser, error) in
+            if error == nil {
+                cell.nameLabel.text = pendingUser!["username"] as? String
+            } else {
+                print("Error")
+            }
+        }
         
         return cell
     }

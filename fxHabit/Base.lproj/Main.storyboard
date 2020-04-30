@@ -561,30 +561,15 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="114" id="fQB-z5-bX9" customClass="PendingFriendTableViewCell" customModule="fxHabit" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="PendingFriendTableViewCell" rowHeight="114" id="fQB-z5-bX9" customClass="PendingFriendTableViewCell" customModule="fxHabit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="114"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fQB-z5-bX9" id="yOJ-9N-RKy">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="114"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friend Request from...." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEr-0O-Ihb">
-                                                    <rect key="frame" x="20" y="12" width="175" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="pendingFriendName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nfl-tg-p0G">
-                                                    <rect key="frame" x="20" y="47" width="156" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yjk-Bh-JWt">
-                                                    <rect key="frame" x="242" y="26" width="57" height="33"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yjk-Bh-JWt">
+                                                    <rect key="frame" x="250" y="41" width="68" height="33"/>
                                                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -595,22 +580,47 @@
                                                         <action selector="onAcceptButton:" destination="fQB-z5-bX9" eventType="touchUpInside" id="Of7-yv-EVD"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bgm-6V-qo3">
-                                                    <rect key="frame" x="327" y="25" width="48" height="33"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bgm-6V-qo3">
+                                                    <rect key="frame" x="326" y="40" width="57" height="33"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <state key="normal" title="Reject"/>
                                                     <connections>
                                                         <action selector="onRejectButton:" destination="fQB-z5-bX9" eventType="touchUpInside" id="n8P-ZU-rcv"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friend Request from...." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEr-0O-Ihb">
+                                                    <rect key="frame" x="20" y="28" width="188.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pendingFriendName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nfl-tg-p0G">
+                                                    <rect key="frame" x="20" y="63" width="155.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="bgm-6V-qo3" secondAttribute="bottom" constant="30" id="0ZI-Ns-nv1"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Yjk-Bh-JWt" secondAttribute="bottom" constant="29" id="1bz-pf-DWb"/>
+                                                <constraint firstItem="PEr-0O-Ihb" firstAttribute="top" secondItem="yOJ-9N-RKy" secondAttribute="top" constant="28" id="7NI-8h-a9M"/>
+                                                <constraint firstItem="Nfl-tg-p0G" firstAttribute="leading" secondItem="yOJ-9N-RKy" secondAttribute="leading" constant="20" id="7rB-Fb-rwR"/>
+                                                <constraint firstItem="bgm-6V-qo3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="yOJ-9N-RKy" secondAttribute="trailingMargin" constant="-11" id="95Q-1t-VNI"/>
+                                                <constraint firstItem="Yjk-Bh-JWt" firstAttribute="leading" secondItem="PEr-0O-Ihb" secondAttribute="trailing" constant="41.5" id="CJM-fB-3Vz"/>
+                                                <constraint firstAttribute="bottom" secondItem="Nfl-tg-p0G" secondAttribute="bottom" constant="30" id="KxH-BX-fDB"/>
+                                                <constraint firstItem="bgm-6V-qo3" firstAttribute="top" secondItem="yOJ-9N-RKy" secondAttribute="topMargin" constant="29" id="gTf-La-hmr"/>
+                                                <constraint firstItem="Yjk-Bh-JWt" firstAttribute="top" secondItem="yOJ-9N-RKy" secondAttribute="topMargin" constant="30" id="oOT-li-uVO"/>
+                                                <constraint firstItem="bgm-6V-qo3" firstAttribute="leading" secondItem="Yjk-Bh-JWt" secondAttribute="trailing" constant="8" id="spe-LX-176"/>
+                                                <constraint firstItem="PEr-0O-Ihb" firstAttribute="leading" secondItem="yOJ-9N-RKy" secondAttribute="leading" constant="20" id="tkV-SR-tCe"/>
+                                                <constraint firstItem="Nfl-tg-p0G" firstAttribute="top" secondItem="PEr-0O-Ihb" secondAttribute="bottom" constant="14" id="utl-yc-cq2"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="nameLabel" destination="Nfl-tg-p0G" id="Wiz-VN-w9w"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="114" id="b2m-fZ-p9h" customClass="FriendTableViewCell" customModule="fxHabit" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendTableViewCell" rowHeight="114" id="b2m-fZ-p9h" customClass="FriendTableViewCell" customModule="fxHabit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="142" width="414" height="114"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="b2m-fZ-p9h" id="tLS-Uz-pUl">
