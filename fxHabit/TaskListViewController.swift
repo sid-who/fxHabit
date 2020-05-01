@@ -241,24 +241,29 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         let query = PFQuery(className: "_User")
         query.getObjectInBackground(withId: PFUser.current()!.objectId!) { (currentUser, error) in
             if currentUser != nil {
-                let lastStreakDay = currentUser!["lastSaveDate"] as! String
-                if lastStreakDay == "" {
+                if currentUser!["lastSaveDate"] == nil {
                     return
-                }
-                
-                if (lastStreakDay != self.getYesterdaysDate()) && (lastStreakDay != self.getTodaysDate()) {
-                    currentUser!["streakValue"] = 0
-                    currentUser!["lastSaveDate"] = ""
-                    currentUser?.saveInBackground()
-                    self.resetCheckMarks()
+                } else {
+                    let lastStreakDay = currentUser!["lastSaveDate"] as! String
                     
-                    let errorAlert = UIAlertController(title: "Uh Oh", message: "Looks like you missed a day in your streak :(", preferredStyle: UIAlertController.Style.alert)
+                    if lastStreakDay == "" {
+                        return
+                    }
                     
-                    errorAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
-                        errorAlert.dismiss(animated: true, completion: nil)
-                        self.loadTasks()
-                    }))
-                    self.present(errorAlert, animated: true, completion: nil)
+                    if (lastStreakDay != self.getYesterdaysDate()) && (lastStreakDay != self.getTodaysDate()) {
+                        currentUser!["streakValue"] = 0
+                        currentUser!["lastSaveDate"] = ""
+                        currentUser?.saveInBackground()
+                        self.resetCheckMarks()
+                        
+                        let errorAlert = UIAlertController(title: "Uh Oh", message: "Looks like you missed a day in your streak :(", preferredStyle: UIAlertController.Style.alert)
+                        
+                        errorAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
+                            errorAlert.dismiss(animated: true, completion: nil)
+                            self.loadTasks()
+                        }))
+                        self.present(errorAlert, animated: true, completion: nil)
+                    }
                 }
             } else {
                 print("Error getting current user: checkIfStreakIsBroken()")
