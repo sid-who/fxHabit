@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
                 configuration.applicationId = "fxhabit"
                 configuration.server = "https://fxhabit.herokuapp.com/parse"
+                configuration.isLocalDatastoreEnabled = true
             })
         )
         
