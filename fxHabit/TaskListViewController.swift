@@ -362,12 +362,6 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         // Do any additional setup after loading the view.
         let query = PFQuery(className:"_User")
         let currentUser = PFUser.current()
-        print(PFUser.current()?["streakValue"])
-        //let somefuckingnumber = PFUser.current()?["streakValue"]
-        //streakCalculation(strcount: somefuckingnumber as! Int)
-        
-        //query.whereKey("objectId", equalTo:PFUser.current()!.objectId as Any)
-        //query.limit = 1
         query.whereKey("username", equalTo:currentUser?.username)
         
         print(PFUser.current()!.objectId as Any)
@@ -380,17 +374,8 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
           } else {
             // The find succeeded.
             self.thisUser = object
-            
-            //print(self.thisUser?["streakValue"] as Any)
             self.strCount = (self.thisUser?["streakValue"])! as! Int
-            //self.streakCount.text = String(self.strCount)
             self.streakCalculation(strcount: self.strCount)
-            //self.secondAction()
-//            if(self.strCount >= 7){
-//                self.streakCount.textColor = UIColor.init(red: 0.1, green: 0.6, blue: 0.4, alpha: 1)
-//            } else {
-//                self.streakCount.textColor = UIColor.init(red: 0.9, green: 0, blue: 0.1, alpha: 1)
-//            }
           }
         }
     }
