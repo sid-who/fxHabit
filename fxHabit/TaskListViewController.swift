@@ -21,17 +21,29 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     var strCount = 0
     var streakDays : Array = [String]()
     fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
+    
     /*LOOKIE HERE*/fileprivate lazy var myDateForm: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter
     }()
     
+    //
+    // For changing post colors 
+    //
+    let taskColors = [UIColor(displayP3Red: 0.09, green: 0.39, blue: 0.49, alpha: 0.7), UIColor(displayP3Red: 0.15, green: 0.68, blue: 0.69, alpha: 0.7), UIColor(displayP3Red: 0.95, green: 0.82, blue: 0.36, alpha: 0.7), UIColor(displayP3Red: 0.93, green: 0.58, blue: 0.29, alpha: 0.7)]
+    var amountOfColors = Int()
+    var colorTracker = [Int]()
+    var sendThisColor = [UIColor]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        tableView.rowHeight = 90;
         tableView.delegate = self
         tableView.dataSource = self
+
         backgroundWork()
         checkIfStreakIsBroken()
         loadTasks()
@@ -54,6 +66,8 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         query.findObjectsInBackground{ (tasks, error) in
             if tasks != nil {
                 self.tasks = tasks!
+                self.amountOfColors = 0
+                self.colorTracker = []
                 self.tableView.reloadData()
             } else {
                 print("Error, can't load posts")
@@ -84,16 +98,32 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         cell.titleLabel.text = task["title"] as? String
         cell.descriptionLabel.text = task["description"] as? String
         
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = UIColor.clear
+        cell.selectedBackgroundView = bgColorView
+        
+        if amountOfColors > 3 {
+            amountOfColors = 0
+        }
+        
         let checked = task["checked"] as? Bool
         if checked == false{
             cell.checkmarkButton.setImage(UIImage(systemName: "rectangle"), for: .normal)
+            cell.cellView.backgroundColor = taskColors[amountOfColors]
+            colorTracker.append(amountOfColors)
+            
             cell.checkmarkButton.accessibilityIdentifier = task.objectId
             cell.checkmarkButton.addTarget(self, action: #selector(checkmarkTask), for: .touchDown)
         } else {
-            cell.checkmarkButton.setImage(UIImage(systemName: "checkmark.rectangle.fill"), for: .normal)
+            cell.checkmarkButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
+            cell.cellView.backgroundColor = taskColors[amountOfColors].withAlphaComponent(1.0)
+            colorTracker.append(amountOfColors)
+            
             cell.checkmarkButton.accessibilityIdentifier = task.objectId
             cell.checkmarkButton.addTarget(self, action: #selector(checkmarkTask), for: .touchDown)
         }
+        
+        amountOfColors += 1
         
         return cell
     }
@@ -304,6 +334,7 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
             if let destVC = segue.destination as? UINavigationController,
                 let targetController = destVC.topViewController as? ViewTaskViewController {
                 targetController.task = individualPost
+                targetController.taskColor = sendThisColor
             }
         }
     }
@@ -314,7 +345,16 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     //
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // when user clicks on certain task, go to view task view controller
+        sendThisColor = []
+        
         individualPost = tasks[indexPath.row]
+        sendThisColor.append(taskColors[colorTracker[indexPath.row]])
+        
+        if colorTracker[indexPath.row] == 3 {
+            sendThisColor.append(taskColors[0])
+        } else {
+            sendThisColor.append(taskColors[colorTracker[indexPath.row] + 1])
+        }
         performSegue(withIdentifier: "ViewTaskSegue", sender: self)
     }
     

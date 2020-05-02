@@ -14,10 +14,17 @@ class PendingFriendTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var acceptButton: UIButton!
     @IBOutlet weak var rejectButton: UIButton!
+    @IBOutlet weak var profilePicture: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    
+        profilePicture.layer.cornerRadius = profilePicture.frame.size.width/2
+        acceptButton.layer.cornerRadius = 4
+        rejectButton.layer.cornerRadius = 4
+        acceptButton.isHidden = true
+        rejectButton.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

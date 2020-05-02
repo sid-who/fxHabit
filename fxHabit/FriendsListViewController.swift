@@ -102,6 +102,8 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
             query.getObjectInBackground(withId: pending) { (pendingUser, error) in
                 if error == nil {
                     cell.nameLabel.text = pendingUser!["username"] as? String
+                    cell.acceptButton.isHidden = false
+                    cell.rejectButton.isHidden = false
                     cell.acceptButton.accessibilityIdentifier = pending
                     cell.acceptButton.addTarget(self, action: #selector(self.onAcceptButton), for: .touchDown)
                     cell.rejectButton.accessibilityIdentifier = pending
@@ -120,7 +122,7 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
             query.getObjectInBackground(withId: sent) { (pendingUser, error) in
                 if error == nil {
                     cell.friendRequestLabel.text = "Request sent to..."
-                    cell.acceptButton.isHidden = true
+                    cell.rejectButton.isHidden = false
                     cell.rejectButton.setTitle("Cancel", for: UIControl.State.init())
                     cell.rejectButton.accessibilityIdentifier = sent
                     cell.rejectButton.addTarget(self, action: #selector(self.cancelRequest), for: .touchDown)
@@ -140,9 +142,12 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                 if error == nil {
                     cell.nameLabel.text = friendUser!["username"] as? String
                     
-                    
-                    
-                    cell.finishedLabel.text = "No"
+                    let lastSaveDate = friendUser!["lastSaveDate"] as? String
+                    if lastSaveDate != self.getTodaysDate() {
+                        cell.finishedLabel.text = "No"
+                    } else {
+                        cell.finishedLabel.text = "YES!"
+                    }
                     
                     let streak = friendUser!["streakValue"] as! Int
                     if (streak == 0) {
@@ -251,10 +256,110 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
     // When rejecting a friend request 
     //
     @objc func onRejectButton(sender:UIButton) {
-        print(sender.accessibilityIdentifier!)
+        // remove friend from current user pending list
+        let pQuery = PFQuery(className:"PendingFriends")
+        pQuery.whereKey("user", equalTo:PFUser.current()!)
+        pQuery.getFirstObjectInBackground { (list, error) in
+            if list != nil {
+                var pendings = [String]()
+                pendings = list!["pendingRequest"]! as! [String]
+                pendings = pendings.filter { $0 != sender.accessibilityIdentifier! }
+                list!["pendingRequest"] = pendings
+                list?.pinInBackground()
+                list!.saveInBackground()
+            } else {
+                print("Error loading current user's pending list")
+            }
+        }
+        
+        let friendUser = PFQuery(className: "_User")
+        friendUser.whereKey("objectId", equalTo: sender.accessibilityIdentifier!)
+        friendUser.getFirstObjectInBackground { (friend, error) in
+            if friend == nil {
+                print("Error finding friend user")
+            } else {
+                // remove current user from friend's pending list
+                let p2Query = PFQuery(className:"PendingFriends")
+                p2Query.whereKey("user", equalTo:friend!)
+                p2Query.getFirstObjectInBackground { (list, error) in
+                    if list != nil {
+                        var pendings = [String]()
+                        pendings = list!["sentRequest"]! as! [String]
+                        pendings = pendings.filter { $0 != PFUser.current()!.objectId! }
+                        list!["sentRequest"] = pendings
+                        list?.pinInBackground()
+                        list!.saveInBackground()
+                        self.loadFriends()
+                    } else {
+                        print("Error loading friend's pending list")
+                    }
+                }
+            }
+        }
     }
     
+    //
+    // Canceling a request you sent
+    //
     @objc func cancelRequest(sender:UIButton) {
-        print(sender.accessibilityIdentifier!)
+        // remove friend from current user's sent list
+        let pQuery = PFQuery(className:"PendingFriends")
+        pQuery.whereKey("user", equalTo:PFUser.current()!)
+        pQuery.getFirstObjectInBackground { (list, error) in
+            if list != nil {
+                var pendings = [String]()
+                pendings = list!["sentRequest"]! as! [String]
+                pendings = pendings.filter { $0 != sender.accessibilityIdentifier! }
+                list!["sentRequest"] = pendings
+                list?.pinInBackground()
+                list!.saveInBackground()
+            } else {
+                print("Error loading current user's pending list")
+            }
+        }
+        
+        let friendUser = PFQuery(className: "_User")
+        friendUser.whereKey("objectId", equalTo: sender.accessibilityIdentifier!)
+        friendUser.getFirstObjectInBackground { (friend, error) in
+            if friend == nil {
+                print("Error finding friend user")
+            } else {
+                // remove current user from friend's pending list
+                let p2Query = PFQuery(className:"PendingFriends")
+                p2Query.whereKey("user", equalTo:friend!)
+                p2Query.getFirstObjectInBackground { (list, error) in
+                    if list != nil {
+                        var pendings = [String]()
+                        pendings = list!["pendingRequest"]! as! [String]
+                        pendings = pendings.filter { $0 != PFUser.current()!.objectId! }
+                        list!["pendingRequest"] = pendings
+                        list?.pinInBackground()
+                        list!.saveInBackground()
+                        self.loadFriends()
+                    } else {
+                        print("Error loading friend's pending list")
+                    }
+                }
+            }
+        }
+    }
+    
+    //
+    // Get's todays date to save when updating streak
+    //
+    func getTodaysDate() -> String{
+        let currentDate = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        let result = formatter.string(from: currentDate)
+        return result
+    }
+    
+    //
+    // Encourage button
+    //
+    @objc func encourageFriend(sender:UIButton) {
+        
     }
 }

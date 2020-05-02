@@ -24,18 +24,27 @@ class NewTaskViewController: UIViewController {
 
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextView!
-    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var titleViewBox: UIView!
+    @IBOutlet weak var descriptionViewBox: UIView!
     
     var task : PFObject?
+    let alertService = AlertService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.HideKeyboard()
 
-        // Do any additional setup after loading the view.
-        errorLabel.text = ""
-        descriptionTextField!.layer.borderWidth = 1
-        descriptionTextField!.layer.borderColor = UIColor.lightGray.cgColor
+        setupView()
+    }
+    
+    //
+    // Set up design 
+    //
+    func setupView() {
+        descriptionTextField!.layer.cornerRadius = 3
+        
+        titleViewBox.layer.cornerRadius = 15
+        descriptionViewBox.layer.cornerRadius = 15
         
         if task != nil {
             titleTextField.text = task?["title"]! as? String
@@ -43,22 +52,30 @@ class NewTaskViewController: UIViewController {
         }
     }
     
-    @IBAction func editTitleTextField(_ sender: Any) {
-        errorLabel.text = ""
-    }
-    
     @IBAction func onSubmitButton(_ sender: Any) {
         if titleTextField.text == "" {
-            errorLabel.text = "Missing title."
+            let alertVC = self.alertService.alert(error: "Error: missing title")
+            self.present(alertVC, animated: true, completion: nil)
+            let when = DispatchTime.now() + 2
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                alertVC.dismiss(animated: true, completion: nil)
+            }
+        } else if titleTextField.text == "Task Title" {
+            let alertVC = self.alertService.alert(error: "Error: missing title")
+            self.present(alertVC, animated: true, completion: nil)
+            let when = DispatchTime.now() + 2
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                alertVC.dismiss(animated: true, completion: nil)
+            }
         } else if task != nil {
             task?["title"] = titleTextField.text
             task?["description"] = descriptionTextField.text
             
             task?.saveInBackground { (success, error) in
                 if success {
-                    self.dismiss(animated: true, completion: nil)
+                    self.performSegue(withIdentifier: "goBackToTaskList", sender: nil)
                 } else {
-                    self.errorLabel.text = error!.localizedDescription
+                    print("Error in NewTaskVC: " + error!.localizedDescription)
                 }
             }
         } else {
@@ -72,7 +89,7 @@ class NewTaskViewController: UIViewController {
                 if success {
                     self.dismiss(animated: true, completion: nil)
                 } else {
-                    self.errorLabel.text = error!.localizedDescription
+                    print("Error in NewTaskVC: " + error!.localizedDescription)
                 }
             }
         }

@@ -19,6 +19,8 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        tableView.rowHeight = 90;
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -56,6 +58,11 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "JournalTableViewCell") as! JournalTableViewCell
+        
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = UIColor.clear
+        cell.selectedBackgroundView = bgColorView
+        
         let entry = entries[indexPath.row]
         cell.titleLabel.text = entry["title"] as? String
         cell.dateLabel.text = entry["date"] as? String

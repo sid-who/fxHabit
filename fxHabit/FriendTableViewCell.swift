@@ -20,6 +20,10 @@ class FriendTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        profileImageView.layer.cornerRadius = profileImageView.frame.size.width/2
+        encourageButton.layer.cornerRadius = 4
+        streakLabel.text = "" 
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
