@@ -26,9 +26,9 @@ You are what you do every day. Our application focuses on the building blocks of
 
 **Required Must-have Stories**
 
-- [ ] User logs in to access friends list, calendar, tracker, journal, and settings
+- [x] User logs in to access friends list, calendar, tracker, and journal
 - [x] User creates their daily and weekly goals in the tracker
-- [ ] User is able to see streak on calendar
+- [x] User is able to see streak on calendar
 - [x] User is able to view previous progress in journal
 - [ ] User is able to share goals with friends
 - [ ] Settings (Accesibility, Notification, General, etc.)
@@ -44,7 +44,7 @@ You are what you do every day. Our application focuses on the building blocks of
 - [x] Friends Screen
 - [ ] Able to look upon friends' tracker and send reminders
 - [x] Calendar Screen
-- [ ] Able to see streak on calendar view
+- [x] Able to see streak on calendar view
 - [x] Tracker Screen
 - [x] Able to create daily and weekly goals
 - [x] Journal Screen
@@ -139,8 +139,8 @@ Optional:
 * Testing and debugging phase: review and polish layout - 04/17/2020 - complete
 ~~* Get notification Certificates setup - 04/19/2020~~ (deemed outside of scope)
 * Have Calendar, Friends List, and Add A Friend storyboard layouts created - 04/23/2020 - complete
-* Set up additional tables in the database and inject data from app - 04/27/2020
-* Display data onto storyboards - 04/29/2020
+* Set up additional tables in the database and inject data from app - 04/27/2020 - complete
+* Display data onto storyboards - 04/29/2020 - complete
 * Testing and debugging phase: review and polish layout - 05/01/2020
 
 ### [BONUS] Interactive Prototype
