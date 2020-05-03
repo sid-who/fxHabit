@@ -60,8 +60,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
     }
     
     
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor?
-    {
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
     
         if let testArray : AnyObject = UserDefaults.standard.object(forKey: "streaksArray") as AnyObject?{
             let readArray : [String] = testArray as! [String]
