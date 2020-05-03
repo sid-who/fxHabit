@@ -18,8 +18,14 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     
     var streaks = [PFObject]()
     var thisUser : PFObject?
+    
+    /* MARK: Remove */
+    
+    /*
     var strCount = 0
     var streakDays : Array = [String]()
+    */
+     
     fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
     
     /*LOOKIE HERE*/fileprivate lazy var myDateForm: DateFormatter = {
@@ -27,6 +33,7 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter
     }()
+    
     
     //
     // For changing post colors 
@@ -44,7 +51,7 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.delegate = self
         tableView.dataSource = self
 
-        backgroundWork()
+        //backgroundWork()
         checkIfStreakIsBroken()
         loadTasks()
     }
@@ -163,6 +170,9 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         var allDone = false
         
         let query = PFQuery(className: "Tasks")
+        
+        /* MARK: Remove */
+        
         //query.fromLocalDatastore()
         query.whereKey("author", equalTo:PFUser.current()!)
         query.findObjectsInBackground{ (tasks, error) in
@@ -358,11 +368,15 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         performSegue(withIdentifier: "ViewTaskSegue", sender: self)
     }
     
+    
+    /* MARK: Remove */
+    
+    /*
     func backgroundWork() {
         // Do any additional setup after loading the view.
         let query = PFQuery(className:"_User")
         let currentUser = PFUser.current()
-        query.whereKey("username", equalTo:currentUser?.username)
+        query.whereKey("username", equalTo:currentUser?.username! as Any)
         
         print(PFUser.current()!.objectId as Any)
 
@@ -407,7 +421,9 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         let streakCountNumber = strCount
         defaults.set(streakCountNumber, forKey: "yourStreak")
     }
+     */
 }
+     
 
 extension Date {
     static var yesterday: Date { return Date().dayBefore }
@@ -418,4 +434,5 @@ extension Date {
     var noon: Date {
         return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
     }
+    
 }

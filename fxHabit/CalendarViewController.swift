@@ -18,9 +18,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
     
     var streaks = [PFObject]()
     var thisUser : PFObject?
-    
     var strCount = 0
-    
     var streakDays : Array = [String]()
     
     fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
@@ -63,28 +61,35 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
             }
           }
         }
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+    }
+    
+    
+    @IBAction func onLogoutButton(_ sender: Any) {
+        PFUser.logOut()
         
+        let main = UIStoryboard(name: "Main", bundle: nil)
+        let loginViewController = main.instantiateViewController(withIdentifier: "LoginViewController")
+        
+        let delegate = self.view.window?.windowScene?.delegate as! SceneDelegate
+        delegate.window!.rootViewController = loginViewController
     }
     
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor?
     {
     
-        if let testArray : AnyObject? = UserDefaults.standard.object(forKey: "streaksArray") as AnyObject?{
-            let readArray : [String] = testArray! as! [String]
-            print(readArray)
+        if let testArray : AnyObject = UserDefaults.standard.object(forKey: "streaksArray") as AnyObject?{
+            let readArray : [String] = testArray as! [String]
             streakDays = readArray
         }
         
         let dateString: String = myDateForm.string(from: date)
         let date2 = Date()
         let dateString2: String = myDateForm.string(from: date2)
-        print(dateString2)
         
         if self.streakDays.contains(dateString) && dateString != dateString2{
             
