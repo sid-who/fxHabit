@@ -68,28 +68,26 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
     
     func streakCalculation(strcount : Int) {
         
-        var negativeDays = strcount * -1
-        
+        var dayCounter = strcount * -1
         let today = Date()
         let lastSaveDate = myDateForm.date(from: (PFUser.current()?["lastSaveDate"] as! String))!
         
-        if (today == lastSaveDate) {
-            negativeDays += 6
+        if (Calendar.current.compare(today, to: lastSaveDate, toGranularity: .day)) == .orderedSame {
+            dayCounter += 1
         }
         
-        let someDaysEarlier = Calendar.current.date(byAdding: .day, value: negativeDays, to: lastSaveDate)!
-        
+        let someDaysEarlier = Calendar.current.date(byAdding: .day, value: dayCounter, to: lastSaveDate)!
         streakDays.append(myDateForm.string(from: someDaysEarlier))
+        dayCounter *= -1
         
         if strcount != 0 {
-            for i in (1...strcount){
+            for i in (1...dayCounter ){
                 let nextDay = Calendar.current.date(byAdding: .day, value: i, to: someDaysEarlier)!
                 let nextDayString = myDateForm.string(from: nextDay)
                 streakDays.append(nextDayString)
             }
         }
     }
-
     
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
@@ -104,7 +102,6 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
         }
     }
     
-    // Marty and Tracy
     
     /*
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
