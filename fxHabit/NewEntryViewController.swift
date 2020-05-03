@@ -14,21 +14,25 @@ class NewEntryViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var bodyTextView: UITextView!
-    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var titleViewBlock: UIView!
+    @IBOutlet weak var descriptionViewBlock: UIView!
     
     var entry : PFObject?
+    let alertService = AlertService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.HideKeyboard()
 
-        // Do any additional setup after loading the view.
-        errorLabel.text = ""
-        
-        // textView setup
+        setupView()
+    }
+    
+    func setupView() {
         bodyTextView.delegate = self
-        bodyTextView!.layer.borderWidth = 1
-        bodyTextView!.layer.borderColor = UIColor.lightGray.cgColor
+        bodyTextView.layer.cornerRadius = 3
+        
+        titleViewBlock.layer.cornerRadius = 15
+        descriptionViewBlock.layer.cornerRadius = 15
         
         if entry != nil {
             titleTextField.text = entry?["title"]! as? String
@@ -56,10 +60,9 @@ class NewEntryViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    @IBAction func onTitleTextField(_ sender: Any) {
-        errorLabel.text = ""
+    @IBAction func onTitleEdit(_ sender: Any) {
+        titleTextField.placeholder = nil 
     }
-    
     
     @IBAction func onCancelButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -67,7 +70,19 @@ class NewEntryViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func onSubmitButton(_ sender: Any) {
         if titleTextField.text == "" {
-            errorLabel.text = "Missing title."
+            let alertVC = self.alertService.alert(error: "Error: missing title")
+            self.present(alertVC, animated: true, completion: nil)
+            let when = DispatchTime.now() + 2
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                alertVC.dismiss(animated: true, completion: nil)
+            }
+        } else if titleTextField.text == "Journal Title" {
+            let alertVC = self.alertService.alert(error: "Error: missing title")
+            self.present(alertVC, animated: true, completion: nil)
+            let when = DispatchTime.now() + 2
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                alertVC.dismiss(animated: true, completion: nil)
+            }
         } else if entry != nil {
             entry?["title"] = titleTextField.text
             entry?["body"] = bodyTextView.text
@@ -77,7 +92,7 @@ class NewEntryViewController: UIViewController, UITextViewDelegate {
                 if success {
                     self.dismiss(animated: true, completion: nil)
                 } else {
-                    self.errorLabel.text =  error!.localizedDescription
+                    print("Error in NewEntryVC: " + error!.localizedDescription)
                 }
             }
         } else {
@@ -92,7 +107,7 @@ class NewEntryViewController: UIViewController, UITextViewDelegate {
                 if success {
                     self.dismiss(animated: true, completion: nil)
                 } else {
-                    self.errorLabel.text = error!.localizedDescription
+                    print("Error in NewEntryVC: " + error!.localizedDescription)
                 }
             }
         }

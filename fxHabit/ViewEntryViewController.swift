@@ -14,18 +14,28 @@ class ViewEntryViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var bodyTextView: UITextView!
+    @IBOutlet weak var titleViewBlock: UIView!
+    @IBOutlet weak var descriptionViewBlock: UIView!
     
     var entry : PFObject?
+    var taskColor = [UIColor]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        titleLabel.text = entry?["title"]! as? String
-        bodyTextView.text = entry?["body"]! as? String
-        dateLabel.text = entry?["date"]! as? String
+        setupView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        setupView()
+    }
+    
+    func setupView() {
+        titleViewBlock.layer.cornerRadius = 15
+        titleViewBlock.backgroundColor = taskColor[0]
+        descriptionViewBlock.layer.cornerRadius = 15
+        descriptionViewBlock.backgroundColor = taskColor[1]
+        
         titleLabel.text = entry?["title"]! as? String
         bodyTextView.text = entry?["body"]! as? String
         dateLabel.text = entry?["date"]! as? String

@@ -16,6 +16,14 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     var entries = [PFObject]()
     var entry : PFObject?
     
+    //
+    // For changing post colors
+    //
+    let taskColors = [UIColor(displayP3Red: 0.09, green: 0.39, blue: 0.49, alpha: 0.7), UIColor(displayP3Red: 0.15, green: 0.68, blue: 0.69, alpha: 0.7), UIColor(displayP3Red: 0.95, green: 0.82, blue: 0.36, alpha: 0.7), UIColor(displayP3Red: 0.93, green: 0.58, blue: 0.29, alpha: 0.7)]
+    var amountOfColors = Int()
+    var colorTracker = [Int]()
+    var sendThisColor = [UIColor]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,6 +36,10 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        loadEntries()
+    }
+    
+    func loadEntries() {
         let query = PFQuery(className:"Entries")
         query.whereKey("author", equalTo:PFUser.current()!)
         query.limit = 15
@@ -35,6 +47,8 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         query.findObjectsInBackground{ (entries, error) in
             if entries != nil {
                 self.entries = entries!
+                self.amountOfColors = 0
+                self.colorTracker = []
                 self.tableView.reloadData()
             } else {
                 print("Error, can't load entries")
@@ -63,9 +77,26 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         bgColorView.backgroundColor = UIColor.clear
         cell.selectedBackgroundView = bgColorView
         
+        if indexPath.row == 0 {
+            cell.topConstraintForView.constant = 15
+            self.tableView.rowHeight = 90 + 7.5;
+        } else {
+            cell.topConstraintForView.constant = 7.5
+            self.tableView.rowHeight = 90;
+        }
+        
         let entry = entries[indexPath.row]
         cell.titleLabel.text = entry["title"] as? String
         cell.dateLabel.text = entry["date"] as? String
+        
+        if amountOfColors > 3 {
+            amountOfColors = 0
+        }
+        
+        cell.journalViewBlock.backgroundColor = taskColors[amountOfColors]
+        colorTracker.append(amountOfColors)
+        
+        amountOfColors += 1
         
         return cell
     }
@@ -75,13 +106,24 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
             if let destVC = segue.destination as? UINavigationController,
                 let targetController = destVC.topViewController as? ViewEntryViewController {
                 targetController.entry = entry
+                targetController.taskColor = sendThisColor
             }
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // when user clicks on certain task, go to view task view controller
+        sendThisColor = []
+        
         entry = entries[indexPath.row]
+        sendThisColor.append(taskColors[colorTracker[indexPath.row]])
+        
+        if colorTracker[indexPath.row] == 3 {
+            sendThisColor.append(taskColors[0])
+        } else {
+            sendThisColor.append(taskColors[colorTracker[indexPath.row] + 1])
+        }
+        
         performSegue(withIdentifier: "ViewEntrySegue", sender: self)
     }
 }

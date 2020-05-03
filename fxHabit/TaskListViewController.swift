@@ -109,6 +109,14 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         bgColorView.backgroundColor = UIColor.clear
         cell.selectedBackgroundView = bgColorView
         
+        if indexPath.row == 0 {
+            cell.topConstraintForView.constant = 15
+            self.tableView.rowHeight = 90 + 7.5;
+        } else {
+            cell.topConstraintForView.constant = 7.5
+            self.tableView.rowHeight = 90;
+        }
+        
         if amountOfColors > 3 {
             amountOfColors = 0
         }

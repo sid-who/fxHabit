@@ -19,7 +19,13 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let username = PFUser.current()?.username
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        self.navigationItem.title = username! + "'s Friends"
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -142,11 +148,12 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                 if error == nil {
                     cell.nameLabel.text = friendUser!["username"] as? String
                     
+                    /*
                     let lastSaveDate = friendUser!["lastSaveDate"] as? String
                     if lastSaveDate != self.getTodaysDate() {
-                        cell.finishedLabel.text = "No"
+                        cell.finishedLabel.text = "Not Done"
                     } else {
-                        cell.finishedLabel.text = "YES!"
+                        cell.finishedLabel.text = "Done!"
                     }
                     
                     let streak = friendUser!["streakValue"] as! Int
@@ -155,7 +162,7 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                     } else {
                         let stringStreak = String(streak)
                         cell.streakLabel.text = "Streak = " + stringStreak
-                    }
+                    } */
                     
                     // I need the AlamofireImage pod :)
                     /*

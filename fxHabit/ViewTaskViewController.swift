@@ -25,17 +25,16 @@ class ViewTaskViewController: UIViewController {
         setupView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        setupView()
+    }
+    
     func setupView() {
         titleViewBlock.layer.cornerRadius = 15
         titleViewBlock.backgroundColor = taskColor[0]
         descriptionViewBlock.layer.cornerRadius = 15
         descriptionViewBlock.backgroundColor = taskColor[1]
         
-        titleLabel.text = task?["title"]! as? String
-        descriptionLabel.text = task?["description"]! as? String
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
         titleLabel.text = task?["title"]! as? String
         descriptionLabel.text = task?["description"]! as? String
     }
