@@ -17,8 +17,6 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
     @IBOutlet weak var streakCount: UILabel!
     
     var streaks = [PFObject]()
-    var thisUser : PFObject?
-    var strCount = 0
     var streakDays : Array = [String]()
     
     fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
@@ -35,31 +33,14 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE MM-dd-YYYY"
         
+        let streakValue:Int = PFUser.current()?["streakValue"]! as! Int
         
-        // Do any additional setup after loading the view.
-        let query = PFQuery(className:"_User")
-        let currentUser = PFUser.current()
-        query.whereKey("username", equalTo:currentUser?.username)
-
-        print(PFUser.current()!.objectId as Any)
-
-
-        query.getFirstObjectInBackground {
-          (object: PFObject?, error: Error?) -> Void in
-          if error != nil || object == nil {
-
-          } else {
-            // The find succeeded.
-            self.thisUser = object
-            self.strCount = (self.thisUser?["streakValue"])! as! Int
-            self.streakCount.text = String(self.strCount)
-            
-            if(self.strCount >= 7){
-                self.streakCount.textColor = UIColor.init(red: 0.1, green: 0.6, blue: 0.4, alpha: 1)
-            } else {
-                self.streakCount.textColor = UIColor.init(red: 0.9, green: 0, blue: 0.1, alpha: 1)
-            }
-          }
+        streakCount.text = String(streakValue)
+        
+        if(streakValue >= 7){
+            self.streakCount.textColor = UIColor.init(red: 0.1, green: 0.6, blue: 0.4, alpha: 1)
+        } else {
+            self.streakCount.textColor = UIColor.init(red: 0.9, green: 0, blue: 0.1, alpha: 1)
         }
     }
     
@@ -91,8 +72,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
         let date2 = Date()
         let dateString2: String = myDateForm.string(from: date2)
         
-        if self.streakDays.contains(dateString) && dateString != dateString2{
-            
+        if self.streakDays.contains(dateString) && dateString != dateString2 {
             return UIColor.init(red: 0.1, green: 0.6, blue: 0.4, alpha: 1)
             
         } else {
@@ -106,6 +86,5 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE MM-dd-YYYY"
         let string = formatter.string(from: date)
-        print("\(string)")
     }
 }

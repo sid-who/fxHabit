@@ -602,6 +602,9 @@
                     <navigationItem key="navigationItem" id="baB-EU-1rF">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="U57-vC-te2">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="onLogoutButton:" destination="26V-Pw-nUe" id="gkv-dO-aEa"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
