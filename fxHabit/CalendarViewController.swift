@@ -17,7 +17,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
     @IBOutlet weak var streakCount: UILabel!
     
     var streaks = [PFObject]()
-    var streakDays : Array = [String]()
+    var streakDays = [String]()
     
     fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
     fileprivate lazy var myDateForm: DateFormatter = {
@@ -25,6 +25,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter
     }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +43,12 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
         } else {
             self.streakCount.textColor = UIColor.init(red: 0.9, green: 0, blue: 0.1, alpha: 1)
         }
+        
+        streakCalculation(strcount: streakValue)
+        // is this reload in the right spot?
+        calendar.reloadData()
     }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -60,18 +66,37 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
     }
     
     
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
-    
-        if let testArray : AnyObject = UserDefaults.standard.object(forKey: "streaksArray") as AnyObject?{
-            let readArray : [String] = testArray as! [String]
-            streakDays = readArray
+    func streakCalculation(strcount : Int) {
+        
+        var negativeDays = strcount * -1
+        
+        let today = Date()
+        let lastSaveDate = myDateForm.date(from: (PFUser.current()?["lastSaveDate"] as! String))!
+        
+        if (today == lastSaveDate) {
+            negativeDays += 6
         }
         
-        let dateString: String = myDateForm.string(from: date)
-        let date2 = Date()
-        let dateString2: String = myDateForm.string(from: date2)
+        let someDaysEarlier = Calendar.current.date(byAdding: .day, value: negativeDays, to: lastSaveDate)!
         
-        if self.streakDays.contains(dateString) && dateString != dateString2 {
+        streakDays.append(myDateForm.string(from: someDaysEarlier))
+        
+        if strcount != 0 {
+            for i in (1...strcount){
+                let nextDay = Calendar.current.date(byAdding: .day, value: i, to: someDaysEarlier)!
+                let nextDayString = myDateForm.string(from: nextDay)
+                streakDays.append(nextDayString)
+            }
+        }
+    }
+
+    
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+        
+        let dateString: String = myDateForm.string(from: date)
+        
+        if self.streakDays.contains(dateString) {
             return UIColor.init(red: 0.1, green: 0.6, blue: 0.4, alpha: 1)
             
         } else {
@@ -79,11 +104,14 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
         }
     }
     
+    // Marty and Tracy
     
+    /*
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE MM-dd-YYYY"
         let string = formatter.string(from: date)
     }
+    */
 }
