@@ -45,7 +45,6 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
         }
         
         streakCalculation(strcount: streakValue)
-        // is this reload in the right spot?
         calendar.reloadData()
     }
     
@@ -68,23 +67,27 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
     
     func streakCalculation(strcount : Int) {
         
-        var dayCounter = strcount * -1
-        let today = Date()
-        let lastSaveDate = myDateForm.date(from: (PFUser.current()?["lastSaveDate"] as! String))!
-        
-        if (Calendar.current.compare(today, to: lastSaveDate, toGranularity: .day)) == .orderedSame {
+        if(strcount > 0)
+        {
+            var dayCounter = strcount * -1
             dayCounter += 1
-        }
-        
-        let someDaysEarlier = Calendar.current.date(byAdding: .day, value: dayCounter, to: lastSaveDate)!
-        streakDays.append(myDateForm.string(from: someDaysEarlier))
-        dayCounter *= -1
-        
-        if strcount != 0 {
-            for i in (1...dayCounter ){
-                let nextDay = Calendar.current.date(byAdding: .day, value: i, to: someDaysEarlier)!
-                let nextDayString = myDateForm.string(from: nextDay)
-                streakDays.append(nextDayString)
+    //        let today = Date()
+            let lastSaveDate = myDateForm.date(from: (PFUser.current()?["lastSaveDate"] as! String))!
+            
+    //        if (Calendar.current.compare(today, to: lastSaveDate, toGranularity: .day)) == .orderedSame {
+    //            dayCounter += 1
+    //        }
+            
+            let someDaysEarlier = Calendar.current.date(byAdding: .day, value: dayCounter, to: lastSaveDate)!
+            streakDays.append(myDateForm.string(from: someDaysEarlier))
+            dayCounter *= -1
+            
+            if strcount != 0 {
+                for i in (0...dayCounter ){
+                    let nextDay = Calendar.current.date(byAdding: .day, value: i, to: someDaysEarlier)!
+                    let nextDayString = myDateForm.string(from: nextDay)
+                    streakDays.append(nextDayString)
+                }
             }
         }
     }
