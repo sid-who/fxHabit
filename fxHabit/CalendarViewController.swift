@@ -71,12 +71,8 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
         {
             var dayCounter = strcount * -1
             dayCounter += 1
-    //        let today = Date()
-            let lastSaveDate = myDateForm.date(from: (PFUser.current()?["lastSaveDate"] as! String))!
             
-    //        if (Calendar.current.compare(today, to: lastSaveDate, toGranularity: .day)) == .orderedSame {
-    //            dayCounter += 1
-    //        }
+            let lastSaveDate = myDateForm.date(from: (PFUser.current()?["lastSaveDate"] as! String))!
             
             let someDaysEarlier = Calendar.current.date(byAdding: .day, value: dayCounter, to: lastSaveDate)!
             streakDays.append(myDateForm.string(from: someDaysEarlier))
@@ -104,14 +100,4 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
             return nil
         }
     }
-    
-    
-    /*
-    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE MM-dd-YYYY"
-        let string = formatter.string(from: date)
-    }
-    */
 }
