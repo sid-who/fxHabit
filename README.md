@@ -30,8 +30,6 @@ You are what you do every day. Our application focuses on the building blocks of
 - [x] User creates their daily and weekly goals in the tracker
 - [x] User is able to see streak on calendar
 - [x] User is able to view previous progress in journal
-- [ ] User is able to share goals with friends
-- [ ] Settings (Accesibility, Notification, General, etc.)
 
 **Optional Nice-to-have Stories**
 
@@ -49,7 +47,6 @@ You are what you do every day. Our application focuses on the building blocks of
 - [x] Able to create daily and weekly goals
 - [x] Journal Screen
 - [ ] Able to view previous daily (or weekly?) summary of goals met
-- [ ] Settings Screen
 
 ### 3. Navigation
 
@@ -75,30 +72,49 @@ Optional:
 ### Models
 #### User
  * Using Parse default user object 'PFUser'
- * Only using username and password
+ * Added additional fields 'lastSaveDate' and 'streakValue'
 
 #### Task
    | Property      | Type     | Description |
    | ------------- | -------- | ------------|
    | objectId      | String   | unique id for the user task (default field) |
-   | creator       | Pointer to User| task creator |
+   | author        | Pointer to User | task creator |
    | title         | String   | task name |
-   | taskDesc      | String   | a short description of the task |
+   | description   | String   | a short description of the task |
    | createdAt     | DateTime | date when task is created (default field) |
    | updatedAt     | DateTime | date when task is last updated (default field) |
+   | checked       | Boolean  | true when task has been completed for the day
    
-#### Journal
+#### Entries
    | Property      | Type     | Description |
    | ------------- | -------- | ------------|
    | objectId      | String   | unique id for the user task (default field) |
-   | creator       | Pointer to User| entry creator |
+   | author        | Pointer to User| entry creator |
    | title         | String   | journal entry title |
-   | journalBody   | String   | main text of the journal entry |
+   | body          | String   | main text of the journal entry |
    | createdAt     | DateTime | date when journal is created (default field) |
    | updatedAt     | DateTime | date when journal is last updated (default field) |
+   | date          | string   | creation date display string |
    
-#### Calendar
- * We have not decided on a model for the Calendar
+#### FriendsList
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | objectId      | String   | unique id for the user task (default field) |
+   | user          | Pointer to User | friends list owner |
+   | createdAt     | DateTime | date when task is created (default field) |
+   | updatedAt     | DateTime | date when task is last updated (default field) |
+   | friends       | Array    | array of all friend's user objectIds |
+   
+#### PendingFriends
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | objectId      | String   | unique id for the user task (default field) |
+   | user          | Pointer to User | friends list owner |
+   | createdAt     | DateTime | date when task is created (default field) |
+   | updatedAt     | DateTime | date when task is last updated (default field) |
+   | pendingRequest| Array    | array of all pending friend's user objectIds |
+   | sentRequest   | Array    | array of user objectIds with sent requests |
+ 
    
 ### Networking
 #### List of network requests by screen
@@ -128,7 +144,13 @@ Optional:
    - Journal Entry Screen
       - (Create/POST) Create a new journal object
       - (Update/POST) Edit an old journal object
-
+   - View Friends Screen
+      - (Read/GET) Query all pending friends requests
+      - (Read/GET) Query all friends
+      - (Update/POST) Change pending friend request to friend
+   - Add Friend Screen
+      - (Create/POST) Create a new pending friend request
+   
 ## Tasks
 * Daily alternating paired programming sessions 
 
@@ -141,7 +163,7 @@ Optional:
 * Have Calendar, Friends List, and Add A Friend storyboard layouts created - 04/23/2020 - complete
 * Set up additional tables in the database and inject data from app - 04/27/2020 - complete
 * Display data onto storyboards - 04/29/2020 - complete
-* Testing and debugging phase: review and polish layout - 05/01/2020
+* Testing and debugging phase: review and polish layout - 05/06/2020
 
 ### [BONUS] Interactive Prototype
 ![fxHabit Demo 1](mocks/fxhabit_demo1.gif)
