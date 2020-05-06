@@ -111,13 +111,9 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
                 colorCounter += 1
                 return UIColor.init(red: 0.95, green: 0.82, blue: 0.36, alpha: 0.7)
             }
-            else if colorCounter == 3 {
-                colorCounter += 1
-                return UIColor.init(red: 0.93, green: 0.58, blue: 0.29, alpha: 0.7)
-            }
             else {
                 colorCounter = 0
-                return UIColor.init(red: 0.1, green: 0.45, blue: 0.8, alpha: 0.9)
+                return UIColor.init(red: 0.93, green: 0.58, blue: 0.29, alpha: 0.7)
             }
         } else {
             return nil
