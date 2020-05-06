@@ -18,6 +18,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
     
     var streaks = [PFObject]()
     var streakDays = [String]()
+    var colorCounter = 0
     
     fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
     fileprivate lazy var myDateForm: DateFormatter = {
@@ -39,12 +40,16 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
         streakCount.text = String(streakValue)
         
         if(streakValue >= 7){
-            self.streakCount.textColor = UIColor.init(red: 0.1, green: 0.6, blue: 0.4, alpha: 1)
+            self.streakCount.textColor = UIColor.init(red: 0.1, green: 0.45, blue: 0.8, alpha: 0.9)
         } else {
-            self.streakCount.textColor = UIColor.init(red: 0.9, green: 0, blue: 0.1, alpha: 1)
+            self.streakCount.textColor = UIColor.init(red: 0.7, green: 0.4, blue: 0.0, alpha: 0.5)
         }
         
         streakCalculation(strcount: streakValue)
+        calendar.appearance.todayColor = UIColor.init(red: 0.1, green:0.6, blue: 0.7, alpha: 0.5)
+        
+        calendar.appearance.eventSelectionColor = UIColor.green
+        
         calendar.reloadData()
     }
     
@@ -71,13 +76,8 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
         {
             var dayCounter = strcount * -1
             dayCounter += 1
-    //        let today = Date()
+            
             let lastSaveDate = myDateForm.date(from: (PFUser.current()?["lastSaveDate"] as! String))!
-            
-    //        if (Calendar.current.compare(today, to: lastSaveDate, toGranularity: .day)) == .orderedSame {
-    //            dayCounter += 1
-    //        }
-            
             let someDaysEarlier = Calendar.current.date(byAdding: .day, value: dayCounter, to: lastSaveDate)!
             streakDays.append(myDateForm.string(from: someDaysEarlier))
             dayCounter *= -1
@@ -94,24 +94,32 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
     
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
-        
+
         let dateString: String = myDateForm.string(from: date)
-        
+
         if self.streakDays.contains(dateString) {
-            return UIColor.init(red: 0.1, green: 0.6, blue: 0.4, alpha: 1)
-            
+            if colorCounter == 0 {
+                colorCounter += 1
+                return UIColor.init(red: 0.09, green: 0.39, blue: 0.49, alpha: 0.7)
+            }
+            else if colorCounter == 1 {
+                colorCounter += 1
+                return UIColor.init(red: 0.15, green: 0.68, blue: 0.69, alpha: 0.7)
+            }
+            else if colorCounter == 2 {
+                colorCounter += 1
+                return UIColor.init(red: 0.95, green: 0.82, blue: 0.36, alpha: 0.7)
+            }
+            else if colorCounter == 3 {
+                colorCounter += 1
+                return UIColor.init(red: 0.93, green: 0.58, blue: 0.29, alpha: 0.7)
+            }
+            else {
+                colorCounter = 0
+                return UIColor.init(red: 0.1, green: 0.45, blue: 0.8, alpha: 0.9)
+            }
         } else {
             return nil
         }
     }
-    
-    
-    /*
-    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE MM-dd-YYYY"
-        let string = formatter.string(from: date)
-    }
-    */
 }
