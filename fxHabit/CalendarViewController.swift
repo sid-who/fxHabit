@@ -40,16 +40,17 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
         streakCount.text = String(streakValue)
         
         if(streakValue >= 7){
-            self.streakCount.textColor = UIColor.init(red: 0.1, green: 0.45, blue: 0.8, alpha: 0.9)
+            self.streakCount.textColor = UIColor.init(red: 0.33, green: 0.42, blue: 0.18, alpha: 0.8)
         } else {
             self.streakCount.textColor = UIColor.init(red: 0.7, green: 0.4, blue: 0.0, alpha: 0.5)
         }
         
         streakCalculation(strcount: streakValue)
+        
         calendar.appearance.todayColor = UIColor.init(red: 0.1, green:0.6, blue: 0.7, alpha: 0.5)
-        
-        calendar.appearance.eventSelectionColor = UIColor.green
-        
+        calendar.appearance.weekdayTextColor = UIColor.init(red: 0.33, green: 0.42, blue: 0.18, alpha: 1)
+        calendar.appearance.headerTitleColor = UIColor.init(red: 0.33, green: 0.42, blue: 0.18, alpha: 1)
+
         calendar.reloadData()
     }
     
