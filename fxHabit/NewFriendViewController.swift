@@ -94,8 +94,7 @@ class NewFriendViewController: UIViewController {
             }
         }
     }
-    
-    @IBAction func onBackButton(_ sender: Any) {
+    @IBAction func onXButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-    }
+    } 
 }
