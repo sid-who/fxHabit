@@ -17,25 +17,43 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
     var sCount = 0
     var fCount = 0
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+                     #selector(FriendsListViewController.handleRefresh(_:)),
+                                 for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = UIColor(displayP3Red: 0.09, green: 0.39, blue: 0.49, alpha: 1)
+        
+        return refreshControl
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let username = PFUser.current()?.username
-        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-        
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        self.navigationItem.title = username! + "'s Friends"
-        navigationController?.navigationBar.titleTextAttributes = textAttributes
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.addSubview(self.refreshControl)
         
-        loadFriends()
+        setupPage()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         loadFriends()
+    }
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        loadFriends()
+        refreshControl.endRefreshing()
+    }
+    
+    func setupPage() {
+        let username = PFUser.current()?.username
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        self.navigationItem.title = username! + "'s Friends"
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
     //
@@ -134,6 +152,7 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                     cell.friendRequestLabel.text = "Request sent to..."
                     cell.nameLabel.text = pendingUser!["username"] as? String
                     
+                    cell.acceptButton.isHidden = true
                     //Making the reject button a cancel button
                     cell.rejectButton.isHidden = false
                     cell.rejectButton.setTitle("Cancel", for: UIControl.State.init())
@@ -163,25 +182,6 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                     }
                     
                     cell.moreButton.accessibilityIdentifier = friend
-                    
-                    /*
-                    let lastSaveDate = friendUser!["lastSaveDate"] as? String
-                    if lastSaveDate != self.getTodaysDate() {
-                        cell.finishedLabel.text = "Not Done"
-                    } else {
-                        cell.finishedLabel.text = "Done!"
-                    }
-                    
-                   */
-                    
-                    // I need the AlamofireImage pod :)
-                    /*
-                    let profileImageFile = friendUser!["profilePic"] as! PFFileObject
-                    let profileUrlString = profileImageFile.url!
-                    let profileUrl = URL(string: profileUrlString)!
-                    
-                    cell.profileImageView.af_setImage(withURL: profileUrl)
-                    */
                 } else {
                     print("Error printing friend cells")
                 }
@@ -222,6 +222,7 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                 list!["pendingRequest"] = pendings
                 list?.pinInBackground()
                 list!.saveInBackground()
+                self.loadFriends()
             } else {
                 print("Error loading current user's pending list")
             }
@@ -260,7 +261,6 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                         list!["sentRequest"] = pendings
                         list?.pinInBackground()
                         list!.saveInBackground()
-                        self.loadFriends()
                     } else {
                         print("Error loading friend's pending list")
                     }
@@ -284,6 +284,7 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                 list!["pendingRequest"] = pendings
                 list?.pinInBackground()
                 list!.saveInBackground()
+                self.loadFriends()
             } else {
                 print("Error loading current user's pending list")
             }
@@ -306,7 +307,6 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                         list!["sentRequest"] = pendings
                         list?.pinInBackground()
                         list!.saveInBackground()
-                        self.loadFriends()
                     } else {
                         print("Error loading friend's pending list")
                     }
@@ -330,6 +330,7 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                 list!["sentRequest"] = pendings
                 list?.pinInBackground()
                 list!.saveInBackground()
+                self.loadFriends()
             } else {
                 print("Error loading current user's pending list")
             }
@@ -352,7 +353,6 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                         list!["pendingRequest"] = pendings
                         list?.pinInBackground()
                         list!.saveInBackground()
-                        self.loadFriends()
                     } else {
                         print("Error loading friend's pending list")
                     }
@@ -371,5 +371,13 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
         
         let result = formatter.string(from: currentDate)
         return result
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddFriendSegue" {
+            if let destVC = segue.destination as? NewFriendViewController {
+                destVC.instanceOfVCA = self
+            }
+        }
     }
 }

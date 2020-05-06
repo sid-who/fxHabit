@@ -13,11 +13,15 @@ class NewFriendViewController: UIViewController {
 
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var popUpView: UIView!
+    var instanceOfVCA:FriendsListViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         errorLabel.text = ""
+        popUpView.layer.cornerRadius = 15
+        popUpView.layer.masksToBounds = true
     }
     
     @IBAction func onAddButton(_ sender: Any) {
@@ -62,6 +66,7 @@ class NewFriendViewController: UIViewController {
                                             //
                                             sentRequestList?.append(userFound!.objectId!)
                                             userPList!["sentRequest"] = sentRequestList
+                                            userPList?.pinInBackground()
                                             userPList?.saveInBackground()
                                             
                                             //
@@ -74,8 +79,16 @@ class NewFriendViewController: UIViewController {
                                                     var pendinglist = otherPList!["pendingRequest"] as? [String]
                                                     pendinglist?.append((PFUser.current()?.objectId!)!)
                                                     otherPList!["pendingRequest"] = pendinglist
+                                                    otherPList?.pinInBackground()
                                                     otherPList?.saveInBackground()
-                                                    self.dismiss(animated: true, completion: nil)
+                                                    self.errorLabel.textColor = UIColor.white
+                                                    self.errorLabel.text = "Success, friend request has been sent :)"
+                                                    
+                                                    let when = DispatchTime.now() + 1
+                                                    DispatchQueue.main.asyncAfter(deadline: when) {
+                                                        self.instanceOfVCA.viewDidAppear(true)
+                                                        self.dismiss(animated: true, completion: nil)
+                                                    }
                                                 } else {
                                                     self.errorLabel.text = "Found user does not have a pending list. Please check database."
                                                 }
@@ -96,5 +109,10 @@ class NewFriendViewController: UIViewController {
     }
     @IBAction func onXButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-    } 
+    }
+    
+    @IBAction func onBackgroundButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
 }

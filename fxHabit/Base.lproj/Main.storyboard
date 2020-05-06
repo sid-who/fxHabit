@@ -901,7 +901,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Add A Friend" image="person.crop.circle.badge.plus" catalog="system" id="p9W-AL-t0h">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="vYv-YR-jFr" kind="presentation" modalPresentationStyle="fullScreen" id="Nh6-bX-jSK"/>
+                                <segue destination="vYv-YR-jFr" kind="presentation" identifier="AddFriendSegue" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="Nh6-bX-jSK"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -921,6 +921,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oWU-zc-mR6">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="onBackgroundButton:" destination="vYv-YR-jFr" eventType="touchUpInside" id="KdI-Et-izV"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yWH-Pe-wq5">
                                 <rect key="frame" x="39" y="325" width="337" height="246"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -959,22 +966,23 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BTP-p4-3jm">
-                                        <rect key="frame" x="52" y="142" width="233" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Error" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BTP-p4-3jm">
+                                        <rect key="frame" x="19" y="142" width="299" height="48"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.1215686275" green="0.1529411765" blue="0.1058823529" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.26750319704329245" green="0.33712230917766006" blue="0.23600506017975711" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="WwO-Xn-g86"/>
                     </view>
                     <connections>
                         <outlet property="errorLabel" destination="BTP-p4-3jm" id="F0q-mG-q9m"/>
+                        <outlet property="popUpView" destination="yWH-Pe-wq5" id="Luc-gD-4k3"/>
                         <outlet property="usernameTextField" destination="uuV-f7-SQr" id="N14-j0-Qgj"/>
                     </connections>
                 </viewController>
@@ -1222,6 +1230,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="6P9-j3-H35"/>
         <segue reference="d8z-bg-oZr"/>
-        <segue reference="GyH-tO-uGI"/>
+        <segue reference="83E-aG-Pqf"/>
     </inferredMetricsTieBreakers>
 </document>
