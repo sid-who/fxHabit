@@ -28,6 +28,8 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         tableView.delegate = self
         tableView.dataSource = self
+        
+        loadFriends()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -369,12 +371,5 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
         
         let result = formatter.string(from: currentDate)
         return result
-    }
-    
-    //
-    // Encourage button
-    //
-    @objc func encourageFriend(sender:UIButton) {
-        
     }
 }
