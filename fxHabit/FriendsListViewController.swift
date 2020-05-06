@@ -110,9 +110,11 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                     cell.nameLabel.text = pendingUser!["username"] as? String
                     cell.acceptButton.isHidden = false
                     cell.rejectButton.isHidden = false
+                    
                     cell.acceptButton.accessibilityIdentifier = pending
-                    cell.acceptButton.addTarget(self, action: #selector(self.onAcceptButton), for: .touchDown)
                     cell.rejectButton.accessibilityIdentifier = pending
+                    
+                    cell.acceptButton.addTarget(self, action: #selector(self.onAcceptButton), for: .touchDown)
                     cell.rejectButton.addTarget(self, action: #selector(self.onRejectButton), for: .touchDown)
                 } else {
                     print("Error printing pending cells")
@@ -128,11 +130,13 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
             query.getObjectInBackground(withId: sent) { (pendingUser, error) in
                 if error == nil {
                     cell.friendRequestLabel.text = "Request sent to..."
+                    cell.nameLabel.text = pendingUser!["username"] as? String
+                    
+                    //Making the reject button a cancel button
                     cell.rejectButton.isHidden = false
                     cell.rejectButton.setTitle("Cancel", for: UIControl.State.init())
                     cell.rejectButton.accessibilityIdentifier = sent
                     cell.rejectButton.addTarget(self, action: #selector(self.cancelRequest), for: .touchDown)
-                    cell.nameLabel.text = pendingUser!["username"] as? String
                 } else {
                     print("Error printing sent request cells")
                 }
@@ -148,6 +152,16 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                 if error == nil {
                     cell.nameLabel.text = friendUser!["username"] as? String
                     
+                    let streak = friendUser!["streakValue"] as! Int
+                    if streak == 0 {
+                        cell.streakLabel.text = "Streak = 0"
+                    } else {
+                        let stringStreak = String(streak)
+                        cell.streakLabel.text = "Streak = " + stringStreak
+                    }
+                    
+                    cell.moreButton.accessibilityIdentifier = friend
+                    
                     /*
                     let lastSaveDate = friendUser!["lastSaveDate"] as? String
                     if lastSaveDate != self.getTodaysDate() {
@@ -156,13 +170,7 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                         cell.finishedLabel.text = "Done!"
                     }
                     
-                    let streak = friendUser!["streakValue"] as! Int
-                    if (streak == 0) {
-                        cell.streakLabel.text = "Streak = 0"
-                    } else {
-                        let stringStreak = String(streak)
-                        cell.streakLabel.text = "Streak = " + stringStreak
-                    } */
+                   */
                     
                     // I need the AlamofireImage pod :)
                     /*

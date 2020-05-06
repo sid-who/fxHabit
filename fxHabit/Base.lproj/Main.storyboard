@@ -879,8 +879,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="moreButton" destination="dvE-wM-3Up" id="xqJ-xp-Sz8"/>
                                             <outlet property="nameLabel" destination="ghe-Wo-RwJ" id="81s-3j-yil"/>
                                             <outlet property="profileImageView" destination="vhQ-Cj-oi8" id="gnh-rb-EX0"/>
+                                            <outlet property="streakLabel" destination="B5s-uY-Gh1" id="D7q-ZU-zWP"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
