@@ -78,6 +78,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
             dayCounter += 1
             
             let lastSaveDate = myDateForm.date(from: (PFUser.current()?["lastSaveDate"] as! String))!
+            
             let someDaysEarlier = Calendar.current.date(byAdding: .day, value: dayCounter, to: lastSaveDate)!
             streakDays.append(myDateForm.string(from: someDaysEarlier))
             dayCounter *= -1

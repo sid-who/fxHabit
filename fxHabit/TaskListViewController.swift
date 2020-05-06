@@ -18,17 +18,10 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     
     var streaks = [PFObject]()
     var thisUser : PFObject?
-    
-    /* MARK: Remove */
-    
-    /*
-    var strCount = 0
-    var streakDays : Array = [String]()
-    */
      
     fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
     
-    /*LOOKIE HERE*/fileprivate lazy var myDateForm: DateFormatter = {
+    fileprivate lazy var myDateForm: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter
@@ -179,9 +172,6 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         
         let query = PFQuery(className: "Tasks")
         
-        /* MARK: Remove */
-        
-        //query.fromLocalDatastore()
         query.whereKey("author", equalTo:PFUser.current()!)
         query.findObjectsInBackground{ (tasks, error) in
             if tasks != nil {
@@ -342,7 +332,6 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         loadTasks()
     }
     
-    
     //
     // Sends individual task to ViewTaskViewController to be displayed
     // Runs 'prepare' function before performing segue
@@ -375,61 +364,6 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         }
         performSegue(withIdentifier: "ViewTaskSegue", sender: self)
     }
-    
-    
-    /* MARK: Remove */
-    
-    /*
-    func backgroundWork() {
-        // Do any additional setup after loading the view.
-        let query = PFQuery(className:"_User")
-        let currentUser = PFUser.current()
-        query.whereKey("username", equalTo:currentUser?.username! as Any)
-        
-        print(PFUser.current()!.objectId as Any)
-
-
-        query.getFirstObjectInBackground {
-          (object: PFObject?, error: Error?) -> Void in
-          if error != nil || object == nil {
-            
-          } else {
-            // The find succeeded.
-            self.thisUser = object
-            self.strCount = (self.thisUser?["streakValue"])! as! Int
-            self.streakCalculation(strcount: self.strCount)
-          }
-        }
-    }
-    
-    func streakCalculation(strcount : Int){
-        let strcount = strcount
-        let negativeDays = strcount * -1
-        
-        let today = Date()
-        let someDaysEarlier = Calendar.current.date(byAdding: .day, value: negativeDays, to: today)!
-        
-        
-        streakDays.append(myDateForm.string(from: someDaysEarlier))
-        
-        /*LOOKIE HERE**///myDateForm.string(from: someDaysEarlier)
-        
-        if strcount != 0 {
-            for i in (1...strcount){
-                let nextDay = Calendar.current.date(byAdding: .day, value: i, to: someDaysEarlier)!
-                let nextDayString = myDateForm.string(from: nextDay)
-                //print(nextDayString)
-                streakDays.append(nextDayString)
-            }
-        }
-        
-        let streaksArray = streakDays
-        let defaults = UserDefaults.standard
-        defaults.set(streaksArray, forKey: "streaksArray")
-        let streakCountNumber = strCount
-        defaults.set(streakCountNumber, forKey: "yourStreak")
-    }
-     */
 }
      
 
