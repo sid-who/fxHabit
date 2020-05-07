@@ -344,6 +344,13 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
                 targetController.taskColor = sendThisColor
             }
         }
+        
+        if segue.identifier == "NewTaskSegue" {
+            if let destVC = segue.destination as? UINavigationController,
+                let targetController = destVC.topViewController as? NewTaskViewController {
+                targetController.instanceOfA = self
+            }
+        }
     }
     
     //
@@ -366,7 +373,6 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     }
 }
      
-
 extension Date {
     static var yesterday: Date { return Date().dayBefore }
     var dayBefore: Date {

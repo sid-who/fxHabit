@@ -109,6 +109,13 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
                 targetController.taskColor = sendThisColor
             }
         }
+        
+        if segue.identifier == "NewEntrySegue" {
+            if let destVC = segue.destination as? UINavigationController,
+                let targetController = destVC.topViewController as? NewEntryViewController {
+                targetController.instanceOfA = self
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

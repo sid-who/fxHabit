@@ -26,6 +26,7 @@ class NewTaskViewController: UIViewController {
     @IBOutlet weak var descriptionTextField: UITextView!
     @IBOutlet weak var titleViewBox: UIView!
     @IBOutlet weak var descriptionViewBox: UIView!
+    var instanceOfA:TaskListViewController!
     
     var task : PFObject?
     let alertService = AlertService()
@@ -87,6 +88,7 @@ class NewTaskViewController: UIViewController {
             
             task.saveInBackground { (success, error) in
                 if success {
+                    self.instanceOfA.viewDidAppear(true)
                     self.dismiss(animated: true, completion: nil)
                 } else {
                     print("Error in NewTaskVC: " + error!.localizedDescription)

@@ -82,7 +82,7 @@
                         <barButtonItem key="rightBarButtonItem" title="New Entry" image="square.and.pencil" catalog="system" id="h89-zy-L7g">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="y34-Is-S5G" kind="presentation" identifier="" id="4Uq-lP-ZGe"/>
+                                <segue destination="y34-Is-S5G" kind="presentation" identifier="NewEntrySegue" id="4Uq-lP-ZGe"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -373,7 +373,7 @@
                         <barButtonItem key="rightBarButtonItem" image="plus.app.fill" catalog="system" id="Dnn-vA-hHl">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="czK-bK-qU7" kind="presentation" id="M5t-MI-pAT"/>
+                                <segue destination="czK-bK-qU7" kind="presentation" identifier="NewTaskSegue" id="M5t-MI-pAT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1229,7 +1229,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6P9-j3-H35"/>
-        <segue reference="d8z-bg-oZr"/>
+        <segue reference="M5t-MI-pAT"/>
         <segue reference="83E-aG-Pqf"/>
     </inferredMetricsTieBreakers>
 </document>

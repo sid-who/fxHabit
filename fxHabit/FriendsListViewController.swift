@@ -16,6 +16,7 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
     var pCount = 0
     var sCount = 0
     var fCount = 0
+    let group = DispatchGroup()
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -60,27 +61,34 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
     // Load friends and pending friends list
     //
     func loadFriends() {
+        // empty variables
+        var pendings = [String]()
+        var sents = [String]()
+        combinedList = [String]()
+        pCount = 0
+        sCount = 0
+        fCount = 0
+        
         // Retrieve pending friends
         let query = PFQuery(className:"PendingFriends")
         query.whereKey("user", equalTo:PFUser.current()!)
+        group.enter()
         query.getFirstObjectInBackground { (list, error) in
             if list != nil {
-                // empty list
-                var pendings = [String]()
-                var sents = [String]()
-                self.combinedList = [String]()
-                
                 pendings = list!["pendingRequest"]! as! [String]
-                sents = list!["sentRequest"]! as! [String]
-                self.pCount = pendings.count
-                self.sCount = sents.count
-                
                 for pend in pendings {
                     self.combinedList.append(pend)
                 }
+                self.pCount = pendings.count
+                self.group.leave()
+                
+                self.group.enter()
+                sents = list!["sentRequest"]! as! [String]
                 for sent in sents {
                     self.combinedList.append(sent)
                 }
+                self.sCount = sents.count
+                self.group.leave()
             } else {
                 print("Error loading pending friends")
             }
@@ -89,6 +97,7 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
         // Retrieve friend list
         let friendQuery = PFQuery(className: "FriendsList")
         friendQuery.whereKey("user", equalTo: PFUser.current()!)
+        group.enter()
         friendQuery.getFirstObjectInBackground { (list, error) in
             if list != nil {
                 var friends = [String]()
@@ -98,10 +107,14 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                 for friend in friends {
                     self.combinedList.append(friend)
                 }
-                self.tableView.reloadData()
+                self.group.leave()
             } else {
                 print("Error loading friends list")
             }
+        }
+        
+        group.notify(queue: .main) {
+            self.tableView.reloadData()
         }
     }
     
@@ -322,6 +335,7 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
         // remove friend from current user's sent list
         let pQuery = PFQuery(className:"PendingFriends")
         pQuery.whereKey("user", equalTo:PFUser.current()!)
+        group.enter()
         pQuery.getFirstObjectInBackground { (list, error) in
             if list != nil {
                 var pendings = [String]()
@@ -330,6 +344,7 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                 list!["sentRequest"] = pendings
                 list?.pinInBackground()
                 list!.saveInBackground()
+                self.group.leave()
                 self.loadFriends()
             } else {
                 print("Error loading current user's pending list")

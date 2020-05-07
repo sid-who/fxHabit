@@ -16,6 +16,7 @@ class NewEntryViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var bodyTextView: UITextView!
     @IBOutlet weak var titleViewBlock: UIView!
     @IBOutlet weak var descriptionViewBlock: UIView!
+    var instanceOfA:JournalViewController!
     
     var entry : PFObject?
     let alertService = AlertService()
@@ -105,6 +106,7 @@ class NewEntryViewController: UIViewController, UITextViewDelegate {
             
             entry.saveInBackground { (success, error) in
                 if success {
+                    self.instanceOfA.viewDidAppear(true)
                     self.dismiss(animated: true, completion: nil)
                 } else {
                     print("Error in NewEntryVC: " + error!.localizedDescription)
