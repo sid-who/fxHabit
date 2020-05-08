@@ -35,6 +35,29 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE MM-dd-YYYY"
         
+//        let streakValue:Int = PFUser.current()?["streakValue"]! as! Int
+//
+//        streakCount.text = String(streakValue)
+//
+//        if(streakValue >= 7){
+//            self.streakCount.textColor = UIColor.init(red: 0.33, green: 0.42, blue: 0.18, alpha: 0.8)
+//        } else {
+//            self.streakCount.textColor = UIColor.init(red: 0.7, green: 0.4, blue: 0.0, alpha: 0.5)
+//        }
+//
+//        streakCalculation(strcount: streakValue)
+        
+        calendar.appearance.todayColor = UIColor.gray
+        calendar.appearance.weekdayTextColor = UIColor.init(red: 0.33, green: 0.42, blue: 0.18, alpha: 1)
+        calendar.appearance.headerTitleColor = UIColor.init(red: 0.33, green: 0.42, blue: 0.18, alpha: 1)
+
+        //calendar.reloadData()
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         let streakValue:Int = PFUser.current()?["streakValue"]! as! Int
         
         streakCount.text = String(streakValue)
@@ -47,16 +70,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
         
         streakCalculation(strcount: streakValue)
         
-        calendar.appearance.todayColor = UIColor.gray
-        calendar.appearance.weekdayTextColor = UIColor.init(red: 0.33, green: 0.42, blue: 0.18, alpha: 1)
-        calendar.appearance.headerTitleColor = UIColor.init(red: 0.33, green: 0.42, blue: 0.18, alpha: 1)
-
-        calendar.reloadData()
-    }
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+//        calendar.reloadData()
     }
     
     
