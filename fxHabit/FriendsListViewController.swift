@@ -16,71 +16,100 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
     var pCount = 0
     var sCount = 0
     var fCount = 0
+    let dispatchGroup = DispatchGroup()
+    var moreOption = String()
+    
+    //
+    // For changing profile colors
+    //
+    let profileColors = [UIColor(displayP3Red: 0.09, green: 0.39, blue: 0.49, alpha: 0.7), UIColor(displayP3Red: 0.15, green: 0.68, blue: 0.69, alpha: 0.7), UIColor(displayP3Red: 0.95, green: 0.82, blue: 0.36, alpha: 0.7), UIColor(displayP3Red: 0.93, green: 0.58, blue: 0.29, alpha: 0.7)]
+    var colorTracker = Int()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let username = PFUser.current()?.username
-        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-        
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        self.navigationItem.title = username! + "'s Friends"
-        navigationController?.navigationBar.titleTextAttributes = textAttributes
         tableView.delegate = self
         tableView.dataSource = self
+        
+        setupPage()
+    }
+    
+    func setupPage() {
+        let username = PFUser.current()?.username
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        self.navigationItem.title = username! + "'s Friends"
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        combinedList = [String]()
+        colorTracker = 0
+        loadPending()
         loadFriends()
     }
     
     //
-    // Load friends and pending friends list
+    // Load pending friends list
     //
-    func loadFriends() {
-        // Retrieve pending friends
-        let query = PFQuery(className:"PendingFriends")
-        query.whereKey("user", equalTo:PFUser.current()!)
-        query.getFirstObjectInBackground { (list, error) in
+    func loadPending() {
+        dispatchGroup.enter()
+
+        var pendings = [String]()
+        var sents = [String]()
+        sCount = 0
+        pCount = 0
+        
+        // Retrieve pending friends list
+        let pendingQuery = PFQuery(className:"PendingFriends")
+        pendingQuery.whereKey("user", equalTo:PFUser.current()!)
+        pendingQuery.getFirstObjectInBackground { (list, error) in
             if list != nil {
-                // empty list
-                var pendings = [String]()
-                var sents = [String]()
-                self.combinedList = [String]()
-                
                 pendings = list!["pendingRequest"]! as! [String]
-                sents = list!["sentRequest"]! as! [String]
-                self.pCount = pendings.count
-                self.sCount = sents.count
-                
                 for pend in pendings {
                     self.combinedList.append(pend)
                 }
+                self.pCount = pendings.count
+                
+                sents = list!["sentRequest"]! as! [String]
                 for sent in sents {
                     self.combinedList.append(sent)
                 }
+                self.sCount = sents.count
+                
+                self.dispatchGroup.leave()
             } else {
-                print("Error loading pending friends")
+                print("PendingQuery: Error loading pending friends")
             }
         }
-        
-        // Retrieve friend list
-        let friendQuery = PFQuery(className: "FriendsList")
-        friendQuery.whereKey("user", equalTo: PFUser.current()!)
-        friendQuery.getFirstObjectInBackground { (list, error) in
-            if list != nil {
-                var friends = [String]()
-                friends = list!["friends"]! as! [String]
-                self.fCount = friends.count
-                
-                for friend in friends {
-                    self.combinedList.append(friend)
+    }
+    
+    //
+    // Load friend list - doesn't go until loadPending() is done
+    //
+    func loadFriends() {
+        dispatchGroup.notify(queue: .main) {
+            self.fCount = 0
+            
+            // Retrieve friend list
+            let friendQuery = PFQuery(className: "FriendsList")
+            friendQuery.whereKey("user", equalTo: PFUser.current()!)
+            friendQuery.getFirstObjectInBackground { (list, error) in
+                if list != nil {
+                    var friends = [String]()
+                    friends = list!["friends"]! as! [String]
+                    
+                    for friend in friends {
+                        self.combinedList.append(friend)
+                    }
+                    self.fCount = friends.count
+                    
+                    self.tableView.reloadData()
+                } else {
+                    print("Error loading friends list")
                 }
-                self.tableView.reloadData()
-            } else {
-                print("Error loading friends list")
             }
         }
     }
@@ -116,10 +145,18 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                     
                     cell.acceptButton.addTarget(self, action: #selector(self.onAcceptButton), for: .touchDown)
                     cell.rejectButton.addTarget(self, action: #selector(self.onRejectButton), for: .touchDown)
+                    
+                    cell.profilePicture.tintColor = self.profileColors[self.colorTracker]
+                    self.colorTracker += 1
                 } else {
                     print("Error printing pending cells")
                 }
             }
+            
+            if colorTracker == 3 {
+                colorTracker = 0
+            }
+            
             pCount -= 1
             return cell
         } else if sCount > 0 {
@@ -132,15 +169,24 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                     cell.friendRequestLabel.text = "Request sent to..."
                     cell.nameLabel.text = pendingUser!["username"] as? String
                     
+                    cell.acceptButton.isHidden = true
                     //Making the reject button a cancel button
                     cell.rejectButton.isHidden = false
                     cell.rejectButton.setTitle("Cancel", for: UIControl.State.init())
                     cell.rejectButton.accessibilityIdentifier = sent
                     cell.rejectButton.addTarget(self, action: #selector(self.cancelRequest), for: .touchDown)
+                    
+                    cell.profilePicture.tintColor = self.profileColors[self.colorTracker]
+                    self.colorTracker += 1
                 } else {
                     print("Error printing sent request cells")
                 }
             }
+            
+            if colorTracker == 3 {
+                colorTracker = 0
+            }
+            
             sCount -= 1
             return cell
         } else {
@@ -161,28 +207,17 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                     }
                     
                     cell.moreButton.accessibilityIdentifier = friend
+                    cell.moreButton.addTarget(self, action: #selector(self.moreButton), for: .touchDown)
                     
-                    /*
-                    let lastSaveDate = friendUser!["lastSaveDate"] as? String
-                    if lastSaveDate != self.getTodaysDate() {
-                        cell.finishedLabel.text = "Not Done"
-                    } else {
-                        cell.finishedLabel.text = "Done!"
-                    }
-                    
-                   */
-                    
-                    // I need the AlamofireImage pod :)
-                    /*
-                    let profileImageFile = friendUser!["profilePic"] as! PFFileObject
-                    let profileUrlString = profileImageFile.url!
-                    let profileUrl = URL(string: profileUrlString)!
-                    
-                    cell.profileImageView.af_setImage(withURL: profileUrl)
-                    */
+                    cell.profileImageView.tintColor = self.profileColors[self.colorTracker]
+                    self.colorTracker += 1
                 } else {
                     print("Error printing friend cells")
                 }
+            }
+            
+            if colorTracker == 3 {
+                colorTracker = 0
             }
             
             return cell
@@ -220,11 +255,14 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                 list!["pendingRequest"] = pendings
                 list?.pinInBackground()
                 list!.saveInBackground()
+                
+                self.viewDidAppear(true)
             } else {
                 print("Error loading current user's pending list")
             }
         }
         
+        // Find friend user to edit their table
         let friendUser = PFQuery(className: "_User")
         friendUser.whereKey("objectId", equalTo: sender.accessibilityIdentifier!)
         friendUser.getFirstObjectInBackground { (friend, error) in
@@ -258,7 +296,6 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                         list!["sentRequest"] = pendings
                         list?.pinInBackground()
                         list!.saveInBackground()
-                        self.loadFriends()
                     } else {
                         print("Error loading friend's pending list")
                     }
@@ -282,11 +319,13 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                 list!["pendingRequest"] = pendings
                 list?.pinInBackground()
                 list!.saveInBackground()
+                self.viewDidAppear(true)
             } else {
                 print("Error loading current user's pending list")
             }
         }
         
+        // Find friend to edit their table
         let friendUser = PFQuery(className: "_User")
         friendUser.whereKey("objectId", equalTo: sender.accessibilityIdentifier!)
         friendUser.getFirstObjectInBackground { (friend, error) in
@@ -304,7 +343,6 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                         list!["sentRequest"] = pendings
                         list?.pinInBackground()
                         list!.saveInBackground()
-                        self.loadFriends()
                     } else {
                         print("Error loading friend's pending list")
                     }
@@ -328,11 +366,13 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                 list!["sentRequest"] = pendings
                 list?.pinInBackground()
                 list!.saveInBackground()
+                self.viewDidAppear(true)
             } else {
                 print("Error loading current user's pending list")
             }
         }
         
+        // Find friend to edit their table
         let friendUser = PFQuery(className: "_User")
         friendUser.whereKey("objectId", equalTo: sender.accessibilityIdentifier!)
         friendUser.getFirstObjectInBackground { (friend, error) in
@@ -350,13 +390,17 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                         list!["pendingRequest"] = pendings
                         list?.pinInBackground()
                         list!.saveInBackground()
-                        self.loadFriends()
                     } else {
                         print("Error loading friend's pending list")
                     }
                 }
             }
         }
+    }
+    
+    @objc func moreButton(sender:UIButton) {
+        moreOption = (sender.accessibilityIdentifier)!
+        performSegue(withIdentifier: "MoreButtonSegue", sender: self)
     }
     
     //
@@ -371,10 +415,18 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
         return result
     }
     
-    //
-    // Encourage button
-    //
-    @objc func encourageFriend(sender:UIButton) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddFriendSegue" {
+            if let destVC = segue.destination as? NewFriendViewController {
+                destVC.instanceOfVCA = self
+            }
+        }
         
+        if segue.identifier == "MoreButtonSegue" {
+            if let destVC = segue.destination as? MoreButtonViewController {
+                destVC.friend = moreOption
+                destVC.instanceOfVCA = self
+            }
+        }
     }
 }

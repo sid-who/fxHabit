@@ -45,7 +45,9 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.dataSource = self
 
         //backgroundWork()
+        setupView()
         checkIfStreakIsBroken()
+        checkForEncouragement()
         loadTasks()
     }
         
@@ -53,6 +55,13 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidAppear(animated)
         
         loadTasks()
+    }
+    
+    func setupView() {
+        let username = PFUser.current()?.username
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        self.navigationItem.title = username!
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
     //
@@ -310,6 +319,41 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     //
+    // Checks if user received notification
+    //
+    func checkForEncouragement() {
+        let query = PFQuery(className: "FriendsList")
+        query.whereKey("user", equalTo: PFUser.current()!)
+        query.getFirstObjectInBackground { (list, error) in
+            if list != nil {
+                let encourageList = list!["encourageList"] as? [String]
+                // checks if list is empty
+                if encourageList?.count != 0 {
+                    var userString = String()
+                    for user in encourageList! {
+                        userString = userString + user + " "
+                    }
+                    
+                    let alert = UIAlertController(title: "Encouragement!", message: userString + "sent you encouragement!!", preferredStyle: UIAlertController.Style.alert)
+                    
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
+                        alert.dismiss(animated: true, completion: nil)
+                        
+                        // Empty encourageList
+                        list!["encourageList"] = []
+                        list?.saveInBackground()
+                    }))
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    return
+                }
+            } else {
+                print("checkForEncouragement: Error retrieving friend list")
+            }
+        }
+    }
+    
+    //
     // Resets the checkmark for each task individually, called recursively from checkCheckmarks()
     //
     func resetCheckMarks() {
@@ -344,6 +388,13 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
                 targetController.taskColor = sendThisColor
             }
         }
+        
+        if segue.identifier == "NewTaskSegue" {
+            if let destVC = segue.destination as? UINavigationController,
+                let targetController = destVC.topViewController as? NewTaskViewController {
+                targetController.instanceOfA = self
+            }
+        }
     }
     
     //
@@ -364,9 +415,37 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         }
         performSegue(withIdentifier: "ViewTaskSegue", sender: self)
     }
+    
+    //
+    // Swipe on a cell
+    //
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let query = PFQuery(className:"Tasks")
+            query.whereKey("author", equalTo:PFUser.current()!)
+            
+            query.findObjectsInBackground{ (tasks, error) in
+                if tasks != nil {
+                    let deleteAlert = UIAlertController(title: "Are you sure you want to delete this task?", message: tasks![indexPath.row]["title"] as? String, preferredStyle: UIAlertController.Style.alert)
+                    
+                    deleteAlert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { (action) in
+                        let task = tasks![indexPath.row]
+                        task.deleteInBackground()
+                        self.loadTasks()
+                        deleteAlert.dismiss(animated: true, completion: nil)
+                    }))
+                    deleteAlert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: { (action) in
+                        deleteAlert.dismiss(animated: true, completion: nil)
+                    }))
+                    self.present(deleteAlert, animated: true, completion: nil)
+                } else {
+                    print("deleteTask: Error, can't retrieve tasks")
+                }
+            }
+        }
+    }
 }
      
-
 extension Date {
     static var yesterday: Date { return Date().dayBefore }
     var dayBefore: Date {

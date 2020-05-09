@@ -35,6 +35,15 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE MM-dd-YYYY"
         
+        calendar.appearance.todayColor = UIColor.gray
+        calendar.appearance.weekdayTextColor = UIColor.init(red: 0.33, green: 0.42, blue: 0.18, alpha: 1)
+        calendar.appearance.headerTitleColor = UIColor.init(red: 0.33, green: 0.42, blue: 0.18, alpha: 1)
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         let streakValue:Int = PFUser.current()?["streakValue"]! as! Int
         
         streakCount.text = String(streakValue)
@@ -46,17 +55,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
         }
         
         streakCalculation(strcount: streakValue)
-        
-        calendar.appearance.todayColor = UIColor.init(red: 0.1, green:0.6, blue: 0.7, alpha: 0.5)
-        calendar.appearance.weekdayTextColor = UIColor.init(red: 0.33, green: 0.42, blue: 0.18, alpha: 1)
-        calendar.appearance.headerTitleColor = UIColor.init(red: 0.33, green: 0.42, blue: 0.18, alpha: 1)
-
         calendar.reloadData()
-    }
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
     }
     
     
@@ -95,7 +94,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
     }
     
     
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
 
         let dateString: String = myDateForm.string(from: date)
 
