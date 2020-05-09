@@ -17,6 +17,7 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
     var sCount = 0
     var fCount = 0
     let dispatchGroup = DispatchGroup()
+    var moreOption = String()
     
     //
     // For changing profile colors
@@ -128,10 +129,6 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if colorTracker == 3 {
-            colorTracker = 0
-        }
-        
         if pCount > 0 {
             let pending = combinedList[indexPath.row] as String
             
@@ -155,6 +152,11 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                     print("Error printing pending cells")
                 }
             }
+            
+            if colorTracker == 3 {
+                colorTracker = 0
+            }
+            
             pCount -= 1
             return cell
         } else if sCount > 0 {
@@ -180,6 +182,11 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                     print("Error printing sent request cells")
                 }
             }
+            
+            if colorTracker == 3 {
+                colorTracker = 0
+            }
+            
             sCount -= 1
             return cell
         } else {
@@ -200,12 +207,17 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                     }
                     
                     cell.moreButton.accessibilityIdentifier = friend
+                    cell.moreButton.addTarget(self, action: #selector(self.moreButton), for: .touchDown)
                     
                     cell.profileImageView.tintColor = self.profileColors[self.colorTracker]
                     self.colorTracker += 1
                 } else {
                     print("Error printing friend cells")
                 }
+            }
+            
+            if colorTracker == 3 {
+                colorTracker = 0
             }
             
             return cell
@@ -386,6 +398,11 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
+    @objc func moreButton(sender:UIButton) {
+        moreOption = (sender.accessibilityIdentifier)!
+        performSegue(withIdentifier: "MoreButtonSegue", sender: self)
+    }
+    
     //
     // Get's todays date to save when updating streak
     //
@@ -401,6 +418,13 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddFriendSegue" {
             if let destVC = segue.destination as? NewFriendViewController {
+                destVC.instanceOfVCA = self
+            }
+        }
+        
+        if segue.identifier == "MoreButtonSegue" {
+            if let destVC = segue.destination as? MoreButtonViewController {
+                destVC.friend = moreOption
                 destVC.instanceOfVCA = self
             }
         }

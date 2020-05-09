@@ -907,11 +907,81 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="20W-jo-3m5" id="ywS-dm-0qm"/>
+                        <segue destination="sGh-Qo-fgL" kind="presentation" identifier="MoreButtonSegue" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="xjf-nc-eOW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="neV-sx-cfj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="373.91304347826087" y="1193.9732142857142"/>
+        </scene>
+        <!--More Button View Controller-->
+        <scene sceneID="AeA-vq-Lxk">
+            <objects>
+                <viewController id="sGh-Qo-fgL" customClass="MoreButtonViewController" customModule="fxHabit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zpX-ts-Igt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kas-IC-Ihp">
+                                <rect key="frame" x="0.0" y="88" width="414" height="621"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="onBackgroundButton:" destination="sGh-Qo-fgL" eventType="touchUpInside" id="WJk-ef-7r7"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vRZ-cS-Klx">
+                                <rect key="frame" x="0.0" y="708" width="414" height="188"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g6e-Pm-Dyn">
+                                        <rect key="frame" x="386" y="8" width="20" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="xmark.circle" catalog="system"/>
+                                        <connections>
+                                            <action selector="onXButton:" destination="sGh-Qo-fgL" eventType="touchUpInside" id="POf-oN-Zpi"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hTO-ZJ-Tff">
+                                        <rect key="frame" x="47" y="103" width="321" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.93333333330000001" green="0.58823529409999997" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Remove Friend">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onRemoveFriendButton:" destination="sGh-Qo-fgL" eventType="touchUpInside" id="2Uc-3R-KZg"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dUU-Gh-0SM">
+                                        <rect key="frame" x="47" y="40" width="321" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.15686274510000001" green="0.68627450980000004" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Encourage Friend">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onEncourageButton:" destination="sGh-Qo-fgL" eventType="touchUpInside" id="Miu-7K-50K"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.1215686275" green="0.1529411765" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="JpB-ZW-a8a"/>
+                    </view>
+                    <connections>
+                        <outlet property="encourageButton" destination="dUU-Gh-0SM" id="jJ4-a7-lPt"/>
+                        <outlet property="popupViewBlock" destination="vRZ-cS-Klx" id="2N1-WJ-7UH"/>
+                        <outlet property="removeFriendButton" destination="hTO-ZJ-Tff" id="boX-IP-b7F"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5YE-if-v8b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1391.304347826087" y="1500.6696428571429"/>
         </scene>
         <!--New Friend View Controller-->
         <scene sceneID="swi-Df-3d6">
@@ -988,7 +1058,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pjo-1q-Wry" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1346.376811594203" y="1193.9732142857142"/>
+            <point key="canvasLocation" x="1386.9565217391305" y="802.90178571428567"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="Vq3-Yw-g1M">

@@ -133,4 +133,33 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         performSegue(withIdentifier: "ViewEntrySegue", sender: self)
     }
+    
+    //
+    // Swipe on a cell
+    //
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let query = PFQuery(className:"Entries")
+            query.whereKey("author", equalTo:PFUser.current()!)
+            
+            query.findObjectsInBackground{ (entries, error) in
+                if entries != nil {
+                    let deleteAlert = UIAlertController(title: "Are you sure you want to delete this task?", message: entries![indexPath.row]["title"] as? String, preferredStyle: UIAlertController.Style.alert)
+                    
+                    deleteAlert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { (action) in
+                        let entry = entries![indexPath.row]
+                        entry.deleteInBackground()
+                        self.loadEntries()
+                        deleteAlert.dismiss(animated: true, completion: nil)
+                    }))
+                    deleteAlert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: { (action) in
+                        deleteAlert.dismiss(animated: true, completion: nil)
+                    }))
+                    self.present(deleteAlert, animated: true, completion: nil)
+                } else {
+                    print("deleteJournale: Error, can't retrieve entries")
+                }
+            }
+        }
+    }
 }
