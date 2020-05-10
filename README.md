@@ -40,13 +40,12 @@ You are what you do every day. Our application focuses on the building blocks of
 - [x] Login or Register - User signs up or signs into account
 - [x] Upon Download/Opening of the application, the user is prompted to log in to gain access to their profile
 - [x] Friends Screen
-- [ ] Able to look upon friends' tracker and send reminders
+- [x] Able to send encourgement to friends
 - [x] Calendar Screen
 - [x] Able to see streak on calendar view
 - [x] Tracker Screen
 - [x] Able to create daily and weekly goals
 - [x] Journal Screen
-- [ ] Able to view previous daily (or weekly?) summary of goals met
 
 ### 3. Navigation
 
@@ -56,10 +55,6 @@ You are what you do every day. Our application focuses on the building blocks of
 * Tracker
 * Calendar
 * Journal
-* Settings 
-
-Optional:
-* Calendar 
 
 **Flow Navigation** (Screen to Screen)
 * Forced Log-in -> Account creation if no log in is available
@@ -104,6 +99,8 @@ Optional:
    | createdAt     | DateTime | date when task is created (default field) |
    | updatedAt     | DateTime | date when task is last updated (default field) |
    | friends       | Array    | array of all friend's user objectIds |
+   | encourageList | Array    | array of all friend's who have sent encourgement |
+   
    
 #### PendingFriends
    | Property      | Type     | Description |
@@ -148,11 +145,12 @@ Optional:
       - (Read/GET) Query all pending friends requests
       - (Read/GET) Query all friends
       - (Update/POST) Change pending friend request to friend
+      - (Update/POST) Add encourgement to friends
    - Add Friend Screen
       - (Create/POST) Create a new pending friend request
    
 ## Tasks
-* Daily alternating paired programming sessions 
+* Daily alternating paired programming sessions  - complete
 
 ## Milestones
 * Have Login, Task List, and Journal and associated storyboard layouts created - 04/09/2020 - complete
@@ -163,11 +161,7 @@ Optional:
 * Have Calendar, Friends List, and Add A Friend storyboard layouts created - 04/23/2020 - complete
 * Set up additional tables in the database and inject data from app - 04/27/2020 - complete
 * Display data onto storyboards - 04/29/2020 - complete
-* Testing and debugging phase: review and polish layout - 05/06/2020
+* Testing and debugging phase: review and polish layout - 05/06/2020 - complete
 
 ### [BONUS] Interactive Prototype
-![fxHabit Demo 1](mocks/fxhabit_demo1.gif)
-
-![fxHabit Demo 2](mocks/fxhabit_demo2.gif)
-
-![fxHabit Demo 3](http://g.recordit.co/NB0RlOLJW7.gif)
+![fxHabit Demo Video](mocks/CST495_Final.mp4)
