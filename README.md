@@ -164,4 +164,5 @@ You are what you do every day. Our application focuses on the building blocks of
 * Testing and debugging phase: review and polish layout - 05/06/2020 - complete
 
 ### [BONUS] Interactive Prototype
-![fxHabit Demo Video](mocks/CST495_Final.mp4)
+![fxHabit Demo Video Direct MP4 Link](mocks/CST495_Final.mp4)
+![fxHabit Demo Video Youtube Link](https://youtu.be/CLQvFnFSlHg)
